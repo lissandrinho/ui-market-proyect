@@ -1,0 +1,5 @@
+.text-field:focused,
+.spinner:focused {
+    -fx-border-color: #4e8767;
+    -fx-focus-color: #4e8767;
+}

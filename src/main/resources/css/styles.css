@@ -1,0 +1,48 @@
+/* --- Estilo General para la Tabla --- */
+.table-view {
+    -fx-base: #FFFFFF; /* Color de fondo general de la tabla */
+    -fx-control-inner-background: #FFFFFF; /* Fondo de las filas */
+    -fx-control-inner-background-alt: #F3F3F3; /* Fondo de las filas impares para el efecto "cebra" */
+    -fx-border-color: #DDDDDD; /* Color del borde exterior */
+    -fx-border-width: 1px;
+}
+
+/* --- Estilo para la Cabecera (Header) --- */
+.table-view .column-header {
+    -fx-background-color: #282c2d;
+    -fx-border-color: transparent; /* Oculta bordes internos */
+}
+
+/* Y también al fondo por si acaso */
+.table-view .column-header-background {
+    -fx-background-color: #282c2d;
+}
+.table-view .column-header .label {
+    -fx-text-fill: white; /* Color del texto de la cabecera */
+    -fx-font-weight: bold; /* Texto en negrita */
+    -fx-font-size: 14px;
+}
+
+/* --- Estilo para las Filas --- */
+.table-view .table-row-cell {
+    -fx-cell-size: 30px; /* Altura de cada fila */
+    -fx-font-size: 14px;
+}
+
+/* --- Estilo para la Fila Seleccionada --- */
+.table-view .table-row-cell:selected {
+    -fx-background-color: #a5d6b8; /* Un verde más claro para la selección */
+}
+
+/* --- Estilo para la Fila Seleccionada (con foco) --- */
+.table-view:focused{
+    -fx-background-color: #4e8767; /* Tu color verde */
+}
+
+/* --- Estilo para el "aura" de foco exterior --- */
+.table-view:focused {
+    -fx-focus-color: #4e8767;
+}
+
+
+

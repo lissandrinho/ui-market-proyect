@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="mainPane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.MainController">
+   <left>
+      <VBox spacing="20.0" style="-fx-background-color: #282c2d;" BorderPane.alignment="TOP_CENTER">
+         <children>
+            <Label graphicTextGap="5.0" prefHeight="110.0" prefWidth="250.0" text="UI MARKET" textFill="WHITE" VBox.vgrow="ALWAYS">
+               <graphic>
+                  <ImageView fitHeight="110.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../icons/LogoMax-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Impact" size="22.0" />
+               </font>
+               <padding>
+                  <Insets left="40.0" top="30.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <Region prefHeight="40.0" prefWidth="250.0" VBox.vgrow="ALWAYS" />
+            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" maxHeight="60.0" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="Inicio" textFill="WHITE">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../icons/home_50dp_FFFFFF_FILL0_wght500_GRAD0_opsz48.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="75.0" />
+               </padding>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" maxHeight="60.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleVentasClick" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="Ventas" textFill="WHITE">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../icons/add_shopping_cart_50dp_FFFFFF_FILL0_wght500_GRAD0_opsz48.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="75.0" />
+               </padding>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" maxHeight="60.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleProductosClick" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="Stock" textFill="WHITE">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../icons/inventory_2_50dp_FFFFFF_FILL0_wght500_GRAD0_opsz48.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="75.0" />
+               </padding>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" maxHeight="60.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleClientesClick" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="Clientes" textFill="WHITE">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="330.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../icons/group_search_50dp_FFFFFF_FILL0_wght500_GRAD0_opsz48.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="75.0" />
+               </padding>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" maxHeight="80.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleReportesClick" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="Reportes" textFill="WHITE">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../icons/bar_chart_4_bars_50dp_FFFFFF_FILL0_wght500_GRAD0_opsz48.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="75.0" />
+               </padding>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Button>
+            <Region prefHeight="70.0" prefWidth="250.0" VBox.vgrow="ALWAYS" />
+            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" maxHeight="60.0" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="Salir" textFill="#b85456">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../icons/exit_to_app_500dp_C1585A_FILL0_wght400_GRAD0_opsz48.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="75.0" />
+               </padding>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.30000001192092896" />
+               </color>
+            </DropShadow>
+         </effect>
+      </VBox>
+   </left>
+</BorderPane>
