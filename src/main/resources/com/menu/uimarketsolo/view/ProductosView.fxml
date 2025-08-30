@@ -57,6 +57,9 @@
                      <StackPane.margin>
                         <Insets left="10.0" />
                      </StackPane.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
                </children>
             </StackPane>
@@ -112,7 +115,7 @@
                         <Insets bottom="10.0" left="30.0" />
                      </VBox.margin>
                   </Label>
-                  <TableView fx:id="productosTable" prefHeight="448.0" prefWidth="774.0" stylesheets="@../../../../css/styles.css" VBox.vgrow="ALWAYS">
+                  <TableView fx:id="productosTable" prefHeight="450.0" prefWidth="780.0" stylesheets="@../../../../css/styles.css" VBox.vgrow="ALWAYS">
                     <columns>
                       <TableColumn fx:id="skuColumn" prefWidth="75.0" text="SKU" />
                       <TableColumn fx:id="nombreColumn" prefWidth="75.0" text="Nombre" />
@@ -128,9 +131,9 @@
                   </TableView>
                </children>
             </VBox>
-            <VBox alignment="TOP_CENTER" prefHeight="530.0" prefWidth="280.0" spacing="10.0" style="-fx-background-color: #282c2d; -fx-background-radius: 10;" HBox.hgrow="NEVER">
+            <VBox alignment="TOP_CENTER" prefHeight="530.0" prefWidth="300.0" spacing="10.0" style="-fx-background-color: #282c2d; -fx-background-radius: 10;" HBox.hgrow="NEVER">
                <children>
-                  <Label prefHeight="27.0" prefWidth="293.0" text="Detalles del producto" textFill="WHITE">
+                  <Label prefHeight="27.0" prefWidth="300.0" text="Detalles del producto" textFill="WHITE">
                      <font>
                         <Font name="SansSerif Bold" size="20.0" />
                      </font>

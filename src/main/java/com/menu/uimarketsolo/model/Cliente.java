@@ -8,6 +8,7 @@ public class Cliente {
     private String apellido;
     private String telefono;
     private String email;
+    private boolean isActivo;
 
     public Cliente(){
 
@@ -56,6 +57,14 @@ public class Cliente {
 
     public void setEmail (String email){
         this.email = email;
+    }
+
+    public boolean isActivo() {
+        return isActivo;
+    }
+
+    public void setActivo(boolean activo) {
+        isActivo = activo;
     }
 
     @Override

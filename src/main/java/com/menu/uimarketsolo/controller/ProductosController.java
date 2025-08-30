@@ -81,13 +81,17 @@ public class ProductosController {
                     boolean productoSeleccionado = (newValue != null);
                     editarProductoButton.setDisable(!productoSeleccionado);
                     eliminarProductoButton.setDisable(!productoSeleccionado);
-                    ajustarStockButton.setDisable(!productoSeleccionado); // <-- LÍNEA NUEVA
+                    ajustarStockButton.setDisable(!productoSeleccionado);
                 }
         );
 
         editarProductoButton.setDisable(true);
         eliminarProductoButton.setDisable(true);
         ajustarStockButton.setDisable(true);
+
+        buscarProductoField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filtrarTabla(newValue);
+        });
 
         cargarProductos();
 
@@ -252,4 +256,17 @@ public class ProductosController {
 
         }
     }
+
+    //Controlador para buscar en tiempo real producto
+    private void filtrarTabla(String TextoBusqueda){
+        if(TextoBusqueda == null || TextoBusqueda.isEmpty()){
+            cargarProductos();
+        }
+        else{
+            List<Producto> productosFiltrados = productoDAO.buscarProducto(TextoBusqueda);
+            productosTable.setItems(FXCollections.observableArrayList(productosFiltrados));
+        }
+    }
+
+
 }
