@@ -14,7 +14,10 @@ public class ProductoDAO {
 
     public List<Producto> getAllProductos() {
         List<Producto> productos = new ArrayList<>();
-        String sql = "SELECT * FROM productos WHERE is_activo = true";
+        String sql =    "SELECT p.*, m.nombre AS nombre_marca " +
+                        "FROM productos p " +
+                        "LEFT JOIN marcas m ON p.marca_id = m.id " +
+                        "WHERE p.is_activo = true";
 
         try (Connection conn = DatabaseConnection.getConnection();
              Statement stmt = conn.createStatement();
@@ -31,6 +34,8 @@ public class ProductoDAO {
                 producto.setStock(rs.getInt("stock"));
                 producto.setFechaCreacion(rs.getTimestamp("fecha_creacion").toLocalDateTime());
                 producto.setImagenPath(rs.getString("imagen_path"));
+                producto.setMarcaId(rs.getInt("marca_id"));
+                producto.setNombreMarca(rs.getString("nombre_marca"));
 
                 productos.add(producto);
             }
@@ -43,8 +48,8 @@ public class ProductoDAO {
     //Guardar los productos dentro del Formulario Agregar Nuevo producto.
 
     public void guardarProducto(Producto producto) {
-        String sql = "INSERT INTO productos(sku, nombre, descripcion, precio_venta, stock,  imagen_path) " +
-                "VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO productos(sku, nombre, descripcion, precio_venta, stock, imagen_path, marca_id) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
@@ -54,6 +59,7 @@ public class ProductoDAO {
             pstmt.setDouble(4, producto.getPrecioVenta());
             pstmt.setInt(5, producto.getStock());
             pstmt.setString(6, producto.getImagenPath());
+            pstmt.setInt(7, producto.getMarcaId());
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -66,7 +72,7 @@ public class ProductoDAO {
 
     public void actualizarProducto(Producto producto) {
         String sql = "UPDATE productos SET sku = ?, nombre = ?, descripcion = ?, precio_venta = ?, " +
-                "stock = ?, imagen_path = ? WHERE id = ?";
+                "stock = ?, imagen_path = ?, marca_id = ?, proveedor_id = ? WHERE id = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -77,7 +83,8 @@ public class ProductoDAO {
             pstmt.setDouble(4, producto.getPrecioVenta());
             pstmt.setInt(5, producto.getStock());
             pstmt.setString(6, producto.getImagenPath());
-            pstmt.setInt(7, producto.getId());
+            pstmt.setInt(7, producto.getMarcaId());
+            pstmt.setInt(8, producto.getId());
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -108,7 +115,10 @@ public class ProductoDAO {
 
     public List<Producto> buscarProducto(String termino) {
         List<Producto> productos = new ArrayList<>();
-        String sql = "SELECT * FROM productos WHERE (sku LIKE ? OR nombre LIKE ?) AND is_activo = true";
+        String sql = "SELECT p.*, m.nombre AS nombre_marca " +
+                "FROM productos p " +
+                "LEFT JOIN marcas m ON p.marca_id = m.id " +
+                "WHERE (p.sku LIKE ? OR p.nombre LIKE ?) AND p.is_activo = true";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -127,6 +137,8 @@ public class ProductoDAO {
                     producto.setStock(rs.getInt("stock"));
                     producto.setFechaCreacion(rs.getTimestamp("fecha_creacion").toLocalDateTime());
                     producto.setImagenPath(rs.getString("imagen_path"));
+                    producto.setMarcaId(rs.getInt("marca_id"));
+                    producto.setNombreMarca(rs.getString("nombre_marca"));
                     productos.add(producto);
 
                 }
@@ -139,4 +151,3 @@ public class ProductoDAO {
     }
 
 }
-

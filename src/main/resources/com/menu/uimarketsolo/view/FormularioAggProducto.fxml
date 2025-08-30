@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -108,11 +109,13 @@
                               <Font name="SansSerif Regular" size="16.0" />
                            </font>
                         </TextField>
-                        <HBox spacing="45.0">
-                           <padding>
-                              <Insets left="50.0" />
-                           </padding>
-                        </HBox>
+                        <Region prefHeight="30.0" prefWidth="75.0" />
+                        <Label text="Marca:" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="marcasComboBox" prefWidth="150.0" />
                      </children>
                      <padding>
                         <Insets left="10.0" />

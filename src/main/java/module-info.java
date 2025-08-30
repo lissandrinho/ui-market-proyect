@@ -11,6 +11,7 @@ module com.menu.uimarketsolo {
     requires eu.hansolo.tilesfx;
     requires java.sql;
     requires java.desktop;
+    requires mysql.connector.j;
 
     opens com.menu.uimarketsolo to javafx.fxml;
     exports com.menu.uimarketsolo;

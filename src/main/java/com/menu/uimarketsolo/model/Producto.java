@@ -12,13 +12,18 @@ public class Producto {
     private int stock;
     private LocalDateTime fechaCreacion;
     private String imagenPath;
+    private int marcaId;
+    private int proveedorId;
+    private String nombreMarca;
+    private String nombreProveedor;
+
 
     // Constructor vacío
     public Producto() {
     }
 
     public Producto(int id, String sku, String nombre, double precioVenta, int stock,
-                    LocalDateTime fechaCreacion, String descripcion ,String imagenPath){
+                    LocalDateTime fechaCreacion, String descripcion ,String imagenPath, int marca_id, int proveedor_id){
 
         this.id = id;
         this.sku = sku;
@@ -28,6 +33,8 @@ public class Producto {
         this.stock = stock;
         this.fechaCreacion = fechaCreacion;
         this.imagenPath = imagenPath;
+        this.marcaId = marca_id;
+        this.proveedorId = proveedor_id;
     }
 
 
@@ -95,9 +102,39 @@ public class Producto {
         this.imagenPath = imagenPath;
     }
 
+    public int getMarcaId() {
+        return marcaId;
+    }
+    public void setMarcaId(int marcaId) {
+        this.marcaId = marcaId;
+    }
+
+    public int getProveedorId() {
+        return proveedorId; }
+
+    public void setProveedorId(int proveedorId) {
+        this.proveedorId = proveedorId;
+    }
+
+    public String getNombreMarca() {
+        return nombreMarca;
+    }
+
+    public void setNombreMarca(String nombreMarca) {
+        this.nombreMarca = nombreMarca;
+    }
+
+    public String getNombreProveedor() {
+        return nombreProveedor;
+    }
+
+    public void setNombreProveedor(String nombreProveedor) {
+        this.nombreProveedor = nombreProveedor;
+    }
+
     @Override
     public String toString() {
-        return "Productos{" +
+        return "Producto{" +
                 "id=" + id +
                 ", sku='" + sku + '\'' +
                 ", descripcion='" + descripcion + '\'' +
@@ -106,6 +143,8 @@ public class Producto {
                 ", stock=" + stock +
                 ", fechaCreacion=" + fechaCreacion +
                 ", imagenPath='" + imagenPath + '\'' +
+                ", marcaId=" + marcaId +
+                ", proveedorId=" + proveedorId +
                 '}';
     }
 
@@ -120,4 +159,5 @@ public class Producto {
     public int hashCode() {
         return Objects.hash(id);
     }
+
 }

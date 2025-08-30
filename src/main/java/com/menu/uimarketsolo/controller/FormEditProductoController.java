@@ -1,9 +1,12 @@
 package com.menu.uimarketsolo.controller;
 
+import com.menu.uimarketsolo.dao.MarcaDAO;
 import com.menu.uimarketsolo.dao.MovimientoStockDAO;
 import com.menu.uimarketsolo.dao.ProductoDAO;
+import com.menu.uimarketsolo.model.Marca;
 import com.menu.uimarketsolo.model.MovimientoStock;
 import com.menu.uimarketsolo.model.Producto;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -14,10 +17,11 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path; // <-- IMPORTACIÓN CORRECTA
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class FormEditProductoController {
 
@@ -40,10 +44,13 @@ public class FormEditProductoController {
     private Button btnGuardarProducto;
     @FXML
     private Button btnCancelarOpe;
+    @FXML
+    private ComboBox marcaComboBox;
 
 
     private ProductoDAO productoDAO;
     private Producto productoAEditar;
+    private MarcaDAO marcaDAO;
     private File archivoImagenSeleccionada;
     private MovimientoStockDAO movimientoStockDAO;
 
@@ -51,6 +58,7 @@ public class FormEditProductoController {
     @FXML
     public void initialize(){
         this.productoDAO = new ProductoDAO();
+        this.marcaDAO = new MarcaDAO();
         fieldCantidadProNuevo.setEditable(false);
         this.movimientoStockDAO = new MovimientoStockDAO();
     }
@@ -69,12 +77,25 @@ public class FormEditProductoController {
 
         if(producto.getImagenPath() != null && !producto.getImagenPath().isEmpty()){
             try{
-                String rutaImagen = "/products/" + producto.getImagenPath();
+                String rutaImagen = "/com/menu/uimarketsolo/images/productos/" + producto.getImagenPath();
                 Image image = new Image(getClass().getResourceAsStream(rutaImagen));
                 imagenPreviewNueva.setImage(image);
             }catch (Exception e){
                 System.err.println("No se pudo cargar la imagen: " + producto.getImagenPath());
                 imagenPreviewNueva.setImage(null);
+            }
+        }
+
+
+        List<Marca> todasLasMarcas = marcaDAO.getAllMarcas();
+        marcaComboBox.setItems(FXCollections.observableArrayList(todasLasMarcas));
+
+        if (producto.getMarcaId() != 0) {
+            for (Marca marca : todasLasMarcas) {
+                if (marca.getId() == producto.getMarcaId()) {
+                    marcaComboBox.setValue(marca);
+                    break;
+                }
             }
         }
     }
@@ -115,7 +136,7 @@ public class FormEditProductoController {
 
         if(archivoImagenSeleccionada != null){
             try{
-                Path destino = Paths.get("src/main/resources/com/menu/uimarketsolo/images/productos/");
+                Path destino = Paths.get("/com/menu/uimarketsolo/images/productos/");
                 if(!Files.exists(destino)) Files.createDirectories(destino);
 
                 Path archivoDestino = destino.resolve(archivoImagenSeleccionada.getName());
