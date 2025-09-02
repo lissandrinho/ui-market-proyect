@@ -77,7 +77,7 @@ public class FormEditProductoController {
 
         if(producto.getImagenPath() != null && !producto.getImagenPath().isEmpty()){
             try{
-                String rutaImagen = "/com/menu/uimarketsolo/images/productos/" + producto.getImagenPath();
+                String rutaImagen = "/images/productos/" + producto.getImagenPath();
                 Image image = new Image(getClass().getResourceAsStream(rutaImagen));
                 imagenPreviewNueva.setImage(image);
             }catch (Exception e){
@@ -136,7 +136,8 @@ public class FormEditProductoController {
 
         if(archivoImagenSeleccionada != null){
             try{
-                Path destino = Paths.get("/com/menu/uimarketsolo/images/productos/");
+
+                Path destino = Paths.get("src/main/resources/images/productos");
                 if(!Files.exists(destino)) Files.createDirectories(destino);
 
                 Path archivoDestino = destino.resolve(archivoImagenSeleccionada.getName());
@@ -152,6 +153,12 @@ public class FormEditProductoController {
         productoAEditar.setNombre(fieldNombreProNuevo.getText());
         productoAEditar.setPrecioVenta(precio);
         productoAEditar.setDescripcion(areaDescripcionNuevo.getText());
+
+
+        Marca marcaSeleccionada = (Marca) marcaComboBox.getSelectionModel().getSelectedItem();
+        if (marcaSeleccionada != null) {
+            productoAEditar.setMarcaId(marcaSeleccionada.getId());
+        }
 
         if(cantidadAAgregar > 0){
             productoAEditar.setStock(productoAEditar.getStock() + cantidadAAgregar);
@@ -195,4 +202,3 @@ public class FormEditProductoController {
         alert.showAndWait();
     }
 }
-

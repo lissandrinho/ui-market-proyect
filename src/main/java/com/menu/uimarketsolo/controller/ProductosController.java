@@ -151,7 +151,7 @@ public class ProductosController {
 
             if (producto.getImagenPath() != null && !producto.getImagenPath().isEmpty()) {
                 try {
-                    String rutaImagen = "/com/menu/uimarketsolo/images/productos/" + producto.getImagenPath();
+                    String rutaImagen = "/images/productos/" + producto.getImagenPath();
                     Image image = new Image(getClass().getResourceAsStream(rutaImagen));
                     productoImageView.setImage(image.isError() ? null : image);
                 } catch (Exception e) {
@@ -198,8 +198,8 @@ public class ProductosController {
             dialogStage.initModality(Modality.APPLICATION_MODAL);
             dialogStage.initOwner(agregarProductoButton.getScene().getWindow());
             dialogStage.setScene(new Scene(root));
-            cargarProductos();
             dialogStage.showAndWait();
+            cargarProductos();
 
         } catch (IOException e) {
             System.err.println("Error al cargar la ventana del formulario:");
@@ -240,9 +240,7 @@ public class ProductosController {
     @FXML
     private void handleGestionarMarcas() {
         try {
-            // La ruta debe ser perfecta, incluyendo el nombre del archivo
             URL url = getClass().getResource("/com/menu/uimarketsolo/view/GestionarMarcaView.fxml");
-
 
             if (url == null) {
                 System.err.println("Error: No se encontró el archivo FXML para gestionar marcas.");
@@ -258,6 +256,8 @@ public class ProductosController {
 
             dialogStage.setScene(new Scene(root));
             dialogStage.showAndWait();
+
+            cargarProductos();
         }catch (IOException e){
             e.printStackTrace();
         }

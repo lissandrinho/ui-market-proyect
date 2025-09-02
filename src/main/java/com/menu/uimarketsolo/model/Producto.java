@@ -134,18 +134,7 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Producto{" +
-                "id=" + id +
-                ", sku='" + sku + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", precioVenta=" + precioVenta +
-                ", stock=" + stock +
-                ", fechaCreacion=" + fechaCreacion +
-                ", imagenPath='" + imagenPath + '\'' +
-                ", marcaId=" + marcaId +
-                ", proveedorId=" + proveedorId +
-                '}';
+        return nombre + " (SKU: " + sku + ")";
     }
 
     @Override

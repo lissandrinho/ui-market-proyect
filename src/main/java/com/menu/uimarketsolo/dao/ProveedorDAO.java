@@ -83,4 +83,57 @@ public class ProveedorDAO {
             e.printStackTrace();
         }
     }
+
+    //filtro para buscar proveedores por nombre
+    public List<Proveedor> buscarProveedores(String termino) {
+        List<Proveedor> proveedores = new ArrayList<>();
+        String sql =  "SELECT * FROM proveedores WHERE nombre LIKE ? AND is_activo = true";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, "%" + termino + "%");
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                Proveedor proveedor = new Proveedor();
+                proveedor.setId(rs.getInt("id"));
+                proveedor.setNombre(rs.getString("nombre"));
+                proveedor.setContacto(rs.getString("contacto"));
+                proveedor.setTelefono(rs.getString("telefono"));
+                proveedor.setEmail(rs.getString("email"));
+                proveedor.setDireccion(rs.getString("direccion"));
+                proveedores.add(proveedor);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return proveedores;
+    }
+
+    public List<Proveedor> getProveedoresPorMarca(int marcaId) {
+        List<Proveedor> proveedores = new ArrayList<>();
+        String sql = "SELECT p.* FROM proveedores p " +
+                "JOIN proveedores_marcas pm ON p.id = pm.proveedor_id " +
+                "WHERE pm.marca_id = ?";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, marcaId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    Proveedor proveedor = new Proveedor();
+                    proveedor.setId(rs.getInt("id"));
+                    proveedor.setNombre(rs.getString("nombre"));
+                    proveedores.add(proveedor);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return proveedores;
+    }
+
+
 }

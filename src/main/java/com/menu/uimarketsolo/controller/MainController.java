@@ -52,4 +52,10 @@ public class MainController {
         System.out.println("Boton de Clientes presionado. Cargando vista...");
         cargarVista("ReportesView.fxml");
     }
+
+    @FXML
+    private void handleProveedoresClick(){
+        System.out.println("Boton de Proveedores presionado. Cargando vista...");
+        cargarVista("ProveedorView.fxml");
+    }
 }

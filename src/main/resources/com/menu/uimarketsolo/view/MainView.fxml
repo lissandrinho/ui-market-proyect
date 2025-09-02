@@ -15,7 +15,7 @@
 
 <BorderPane fx:id="mainPane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.MainController">
    <left>
-      <VBox spacing="20.0" style="-fx-background-color: #282c2d;" BorderPane.alignment="TOP_CENTER">
+      <VBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-background-color: #282c2d;" BorderPane.alignment="TOP_CENTER">
          <children>
             <Label graphicTextGap="5.0" prefHeight="110.0" prefWidth="250.0" text="UI MARKET" textFill="WHITE" VBox.vgrow="ALWAYS">
                <graphic>
@@ -36,7 +36,7 @@
                </VBox.margin>
             </Label>
             <Region prefHeight="40.0" prefWidth="250.0" VBox.vgrow="ALWAYS" />
-            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" maxHeight="60.0" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="Inicio" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" maxHeight="60.0" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="INICIO" textFill="WHITE">
                <font>
                   <Font name="Franklin Gothic Medium" size="18.0" />
                </font>
@@ -48,13 +48,13 @@
                   </ImageView>
                </graphic>
                <padding>
-                  <Insets left="75.0" />
+                  <Insets left="50.0" />
                </padding>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" maxHeight="60.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleVentasClick" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="Ventas" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" maxHeight="60.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleVentasClick" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="NUEVA VENTA" textFill="WHITE">
                <font>
                   <Font name="Franklin Gothic Medium" size="18.0" />
                </font>
@@ -66,13 +66,13 @@
                   </ImageView>
                </graphic>
                <padding>
-                  <Insets left="75.0" />
+                  <Insets left="50.0" />
                </padding>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" maxHeight="60.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleProductosClick" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="Stock" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" maxHeight="60.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleProductosClick" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="STOCK" textFill="WHITE">
                <font>
                   <Font name="Franklin Gothic Medium" size="18.0" />
                </font>
@@ -84,13 +84,13 @@
                   </ImageView>
                </graphic>
                <padding>
-                  <Insets left="75.0" />
+                  <Insets left="50.0" />
                </padding>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" maxHeight="60.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleClientesClick" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="Clientes" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" maxHeight="60.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleClientesClick" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="CLIENTES" textFill="WHITE">
                <font>
                   <Font name="Franklin Gothic Medium" size="18.0" />
                </font>
@@ -102,13 +102,31 @@
                   </ImageView>
                </graphic>
                <padding>
-                  <Insets left="75.0" />
+                  <Insets left="50.0" />
                </padding>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" maxHeight="80.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleReportesClick" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="Reportes" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" maxHeight="60.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleProveedoresClick" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="PROVEEDORES" textFill="WHITE">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="330.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../icons/proveedores.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" maxHeight="80.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleReportesClick" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="REPORTES" textFill="WHITE">
                <font>
                   <Font name="Franklin Gothic Medium" size="18.0" />
                </font>
@@ -120,7 +138,7 @@
                   </ImageView>
                </graphic>
                <padding>
-                  <Insets left="75.0" />
+                  <Insets left="50.0" />
                </padding>
                <cursor>
                   <Cursor fx:constant="HAND" />

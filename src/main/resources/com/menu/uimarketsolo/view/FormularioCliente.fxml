@@ -13,16 +13,21 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #282c2d;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.formAddClienteController">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #282c2d;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.FormularioClienteController">
    <padding>
       <Insets left="20.0" right="20.0" />
    </padding>
    <top>
       <VBox prefHeight="74.0" prefWidth="560.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Agregar Cliente" textFill="#4e8767">
+            <Label fx:id="labelFormularioCliente" text="Formulario" textFill="#4e8767">
                <font>
                   <Font name="Franklin Gothic Medium" size="36.0" />
+               </font>
+            </Label>
+            <Label text="Rellene los campos con los datos correspondientes" textFill="WHITE">
+               <font>
+                  <Font name="SansSerif Regular" size="16.0" />
                </font>
             </Label>
          </children>
@@ -50,38 +55,38 @@
                   <Font name="SansSerif Bold" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="fieldNuevaCedula" prefHeight="25.0" prefWidth="230.0" stylesheets="@../../../../css/field.css" GridPane.columnIndex="1" />
+            <TextField fx:id="fieldCedula" prefHeight="25.0" prefWidth="230.0" stylesheets="@../../../../css/field.css" GridPane.columnIndex="1" />
             <Label text="Nombre:" textFill="WHITE" GridPane.rowIndex="1">
                <font>
                   <Font name="SansSerif Bold" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="fieldNuevoNombre" prefHeight="25.0" prefWidth="230.0" stylesheets="@../../../../css/field.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="fieldNombre" prefHeight="25.0" prefWidth="230.0" stylesheets="@../../../../css/field.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="Apellido:" textFill="WHITE" GridPane.rowIndex="2">
                <font>
                   <Font name="SansSerif Bold" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="fieldNuevoTelefono" prefHeight="25.0" prefWidth="230.0" stylesheets="@../../../../css/field.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="fieldTelefono" prefHeight="25.0" prefWidth="230.0" stylesheets="@../../../../css/field.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label text="Telefono:" textFill="WHITE" GridPane.rowIndex="3">
                <font>
                   <Font name="SansSerif Bold" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="fieldNuevoApellido" prefHeight="25.0" prefWidth="230.0" stylesheets="@../../../../css/field.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="fieldApellido" prefHeight="25.0" prefWidth="230.0" stylesheets="@../../../../css/field.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="Email:" textFill="WHITE" GridPane.rowIndex="4">
                <font>
                   <Font name="SansSerif Bold" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="fieldNuevoEmail" prefHeight="25.0" prefWidth="230.0" stylesheets="@../../../../css/field.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="fieldEmail" prefHeight="25.0" prefWidth="230.0" stylesheets="@../../../../css/field.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
    </center>
    <bottom>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="30.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnCancelarOpe" mnemonicParsing="false" prefHeight="50.0" prefWidth="175.0" style="-fx-background-color: #525658;" text="Cancelar" textFill="WHITE">
+            <Button fx:id="btnCancelarOpe" mnemonicParsing="false" onAction="#handleCancelar" prefHeight="50.0" prefWidth="175.0" style="-fx-background-color: #525658;" text="Cancelar" textFill="WHITE">
                <font>
                   <Font name="SansSerif Bold" size="16.0" />
                </font>

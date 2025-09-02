@@ -44,5 +44,24 @@
     -fx-focus-color: #4e8767;
 }
 
+.sidebar-button {
+    -fx-background-color: transparent; /* Fondo transparente por defecto */
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-alignment: center-left;
+    -fx-padding: 10px 20px;
+}
+
+/* --- Efecto Hover (cuando el mouse pasa por encima) --- */
+.sidebar-button:hover {
+    -fx-background-color: #4e8767; /* Tu color verde */
+    -fx-background-radius: 5px; /* Bordes ligeramente redondeados */
+    -fx-cursor: hand;
+}
+
+/* --- Estilo para el Botón Seleccionado (opcional) --- */
+.sidebar-button:pressed, .sidebar-button:focused {
+    -fx-background-color: #3a6b52; /* Un verde un poco más oscuro */
+}
 
 

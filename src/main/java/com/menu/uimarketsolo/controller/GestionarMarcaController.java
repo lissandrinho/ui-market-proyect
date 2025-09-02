@@ -1,7 +1,10 @@
 package com.menu.uimarketsolo.controller;
 
 import com.menu.uimarketsolo.dao.MarcaDAO;
+import com.menu.uimarketsolo.dao.ProveedorDAO;
+import com.menu.uimarketsolo.dao.ProveedorMarcaDAO;
 import com.menu.uimarketsolo.model.Marca;
+import com.menu.uimarketsolo.model.Proveedor;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -20,14 +23,21 @@ public class GestionarMarcaController {
     private Button btnNuevaMarca;
     @FXML
     private ListView<Marca> listVIewMarcas;
+    @FXML
+    private ComboBox<Proveedor> comboBoxProveedorAsignado;
 
     private MarcaDAO marcaDAO;
+    private ProveedorDAO proveedorDAO;
+    private ProveedorMarcaDAO proveedorMarcaDAO = new ProveedorMarcaDAO();
+
 
 
     @FXML
     private void initialize() {
         this.marcaDAO = new MarcaDAO();
+        this.proveedorDAO = new ProveedorDAO();
         cargarMarcas();
+        cargarProveedores();
 
         //cargamos la lista de marcas, activamos y desactivamos botones con la seleccion.
         listVIewMarcas.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -59,21 +69,24 @@ public class GestionarMarcaController {
     @FXML
     private void handleGuardarMarca() {
         String nombreMarca = fieldMarca.getText();
-        if(nombreMarca == null || nombreMarca.trim().isEmpty()){
-            mostrarAlerta("Error", "Debes ingresar un nombre de marca");
+        Proveedor proveedorSeleccionado = comboBoxProveedorAsignado.getSelectionModel().getSelectedItem();
+        if (nombreMarca.trim().isEmpty() || proveedorSeleccionado == null) {
+            mostrarAlerta("Error", "Debes ingresar un nombre para la marca y seleccionar un proveedor.");
             return;
         }
 
         Marca marcaSeleccionada = listVIewMarcas.getSelectionModel().getSelectedItem();
 
         if (marcaSeleccionada == null) {
-            // Si no hay nada seleccionado, se crea una nueva marca
             Marca nuevaMarca = new Marca();
             nuevaMarca.setNombre(nombreMarca);
-            marcaDAO.guardarMarca(nuevaMarca);
-            mostrarAlertaDeExito("Exito", "Nueva marca guardada correctamente");
+
+            Marca marcaGuardada = marcaDAO.guardarMarcaYDevolver(nuevaMarca);
+            if (marcaGuardada != null) {
+                proveedorMarcaDAO.asignarMarcaAProveedor(proveedorSeleccionado.getId(), marcaGuardada.getId());
+                mostrarAlertaDeExito("Éxito", "Nueva marca guardada y asignada correctamente.");
+            }
         } else {
-            // Si hay una selección en la lista, entonces se actualiza la marca existente
             marcaSeleccionada.setNombre(nombreMarca);
             marcaDAO.actualizarMarca(marcaSeleccionada);
             mostrarAlertaDeExito("Exito", "Marca actualizada correctamente");
@@ -113,6 +126,11 @@ public class GestionarMarcaController {
         listVIewMarcas.getSelectionModel().clearSelection();
         fieldMarca.clear();
         btnEliminarMarca.setDisable(true);
+    }
+
+    private void cargarProveedores() {
+        List<Proveedor> proveedores = proveedorDAO.getAllProveedores();
+        comboBoxProveedorAsignado.setItems(FXCollections.observableArrayList(proveedores));
     }
 
     private void mostrarAlerta(String titulo, String mensaje) {

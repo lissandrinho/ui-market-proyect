@@ -89,7 +89,7 @@ public class FormularioAggProController {
         String nombreImagen = null;
         if(archivoImagenSeleccionada != null){
             try{
-                Path destino = Paths.get("src/main/resources/com/menu/uimarketsolo/images/productos");
+                Path destino = Paths.get("src/main/resources/images/productos");
                 if (!Files.exists(destino)){
                     Files.createDirectories(destino);
                 }

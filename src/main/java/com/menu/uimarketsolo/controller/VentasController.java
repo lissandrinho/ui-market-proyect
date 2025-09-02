@@ -1,46 +1,401 @@
 package com.menu.uimarketsolo.controller;
 
+import com.menu.uimarketsolo.dao.ClienteDAO;
+import com.menu.uimarketsolo.dao.ProductoDAO;
+import com.menu.uimarketsolo.dao.VentaDAO;
+import com.menu.uimarketsolo.model.Cliente;
 import com.menu.uimarketsolo.model.Producto;
+import com.menu.uimarketsolo.model.ProductoVenta;
+import com.menu.uimarketsolo.model.Venta;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.geometry.Pos;
+import javafx.scene.Cursor;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import org.controlsfx.control.textfield.TextFields;
+
+import javafx.util.Callback;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.Optional;
 
 public class VentasController {
 
-    // --- Búsqueda Cliente y Producto ---
     @FXML
-    private TextField field_buscarCliente;
+    private TextField fieldBuscarCliente;
+    @FXML
+    private TextField fieldMontoRecibido;
+    @FXML
+    private TextField fieldDescuento;
+    @FXML
+    private TextField fieldBuscarProducto;
+    @FXML
+    private ComboBox<String> comboBoxMetodoPago;
+    @FXML
+    private Spinner<Integer> spinnerCantidad;
+    @FXML
+    private Button buttonAgregarProducto;
+
+
 
     @FXML
-    private TextField field_cliente;
+    private TableView<ProductoVenta> productosTable;
+    @FXML
+    private TableColumn<ProductoVenta, String> skuColumn;
+    @FXML
+    private TableColumn<ProductoVenta, String> productoColumn;
+    @FXML
+    private TableColumn<ProductoVenta, Integer> cantidadColumn;
+    @FXML
+    private TableColumn<ProductoVenta, Double> precioUnitarioColumn;
+    @FXML
+    private TableColumn<ProductoVenta, Void> colAcciones;
 
     @FXML
-    private TextField field_buscarProducto;
+    private ImageView imageViewProductoPreview;
+    @FXML
+    private ImageView imgLupaButton;
+
 
     @FXML
-    private Spinner<?> spiner_cantidadProducto;
+    private Label labelTotal;
+    @FXML
+    private Label labelVuelto;
+    @FXML
+    private Label labelDescuento;
+    @FXML
+    private Label labelIva;
+    @FXML
+    private Label labelNumeroFactura;
+    @FXML
+    private Label labelFecha;
+    @FXML
+    private Label labelSubtotal;
 
-    // --- Tabla de Venta ---
-    @FXML
-    private TableView<Producto> table_listaProductos; // Usar un modelo específico para la venta es mejor
+    private VentaDAO ventaDAO;
+    private Producto producto;
+    private ClienteDAO clienteDAO;
+    private ProductoDAO productoDAO;
+    private ObservableList<ProductoVenta> listaVenta;
+    private Cliente clienteSeleccionado;
+    private Producto productoSeleccionadoParaVenta;
+    private static final double TASA_IVA = 0.22;
 
-    // --- Panel de Totales ---
     @FXML
-    private Label label_subtotal;
-    @FXML
-    private Label label_iva;
-    @FXML
-    private Label label_total;
+    private void initialize(){
+        this.ventaDAO = new VentaDAO();
+        this.producto = new Producto();
+        this.clienteDAO = new ClienteDAO();
+        this.productoDAO = new ProductoDAO();
+        this.listaVenta = FXCollections.observableArrayList();
+        productosTable.setItems(listaVenta);
 
-    // --- Botones de Acción ---
+        configurarTabla();
+        configurarComponentes();
+        configurarAutocompletado();
+        configurarColumnaAcciones();
+
+        // Carga segura del cliente por defecto
+        this.clienteSeleccionado = clienteDAO.getClientePorCedula("00000000");
+        if (this.clienteSeleccionado == null) {
+            mostrarAlerta("Error Crítico", "No se pudo encontrar al cliente por defecto (Consumidor Final).");
+        }
+        fieldBuscarCliente.setText(this.clienteSeleccionado != null ? this.clienteSeleccionado.toString() : "");
+
+        //Numero de factura
+        int ultimoId = ventaDAO.getUltimoIdVenta();
+        int proximaFactura = ultimoId + 1;
+        labelNumeroFactura.setText(String.format("%08d", proximaFactura));
+
+    }
+
+    private void configurarTabla(){
+        skuColumn.setCellValueFactory(new PropertyValueFactory<>("sku"));
+        productoColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        cantidadColumn.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
+        precioUnitarioColumn.setCellValueFactory(new PropertyValueFactory<>("precioUnitario"));
+    }
+
+    private void configurarComponentes(){
+        comboBoxMetodoPago.getItems().addAll("Efectivo", "Tarjeta de Crédito", "Tarjeta de Débito");
+        comboBoxMetodoPago.setValue("Efectivo");
+        comboBoxMetodoPago.valueProperty().addListener((o, oldVal, newVal) -> actualizarTotales());
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        labelFecha.setText(LocalDateTime.now().format(formatter));
+
+        SpinnerValueFactory<Integer> valueFactory =
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 1);
+        spinnerCantidad.setValueFactory(valueFactory);
+
+        fieldDescuento.textProperty().addListener((o, oldVal, newVal) -> actualizarTotales());
+        fieldMontoRecibido.textProperty().addListener((o, oldVal, newVal) -> actualizarTotales());
+
+
+    }
+
+    // Dentro de la clase VentasController.java
+
+    // Dentro de la clase VentasController.java
+
+    private void configurarAutocompletado() {
+
+        List<Cliente> todosLosClientes = clienteDAO.getAllClientes();
+        TextFields.bindAutoCompletion(fieldBuscarCliente, suggestionRequest -> {
+            String textoIngresado = suggestionRequest.getUserText().toLowerCase();
+
+
+            return todosLosClientes.stream().filter(cliente ->
+                    (cliente.getNombre() + " " + cliente.getApellido()).toLowerCase().contains(textoIngresado) ||
+                            cliente.getCedula().toLowerCase().contains(textoIngresado)
+            )       .limit(10)
+                    .toList();
+
+        }).setOnAutoCompleted(event -> {
+            // Cuando el usuario elige un cliente, lo guardamos en la variable
+            clienteSeleccionado = event.getCompletion();
+            // Y actualizamos el texto del campo para mostrar la selección
+            fieldBuscarCliente.setText(clienteSeleccionado.toString());
+        });
+
+
+        List<Producto> todosLosProductos = productoDAO.getAllProductos();
+        TextFields.bindAutoCompletion(fieldBuscarProducto, todosLosProductos)
+                .setOnAutoCompleted(event -> {
+
+
+                    productoSeleccionadoParaVenta = event.getCompletion();
+
+                    if (productoSeleccionadoParaVenta.getImagenPath() != null) {
+                        try {
+                            String rutaImagen = "/images/productos/" + productoSeleccionadoParaVenta.getImagenPath();
+                            Image image = new Image(getClass().getResourceAsStream(rutaImagen));
+                            imageViewProductoPreview.setImage(image.isError() ? null : image);
+                        } catch (Exception e) {
+                            imageViewProductoPreview.setImage(null);
+                        }
+                    } else {
+                        imageViewProductoPreview.setImage(null);
+                    }
+                });
+    }
+
+    private void configurarColumnaAcciones() {
+        Callback<TableColumn<ProductoVenta, Void>, TableCell<ProductoVenta, Void>> cellFactory = param -> {
+            return new TableCell<>() {
+                private final ImageView iconEliminar = new ImageView(new Image(getClass().getResourceAsStream("/icons/papelera.png")));
+                private final Button btnEliminar = new Button("", iconEliminar);
+
+                {
+                    btnEliminar.setStyle("-fx-background-color: transparent;");
+                    btnEliminar.setCursor(Cursor.HAND);
+                    iconEliminar.setFitHeight(20);
+                    iconEliminar.setFitWidth(20);
+
+                    btnEliminar.setOnAction(event -> {
+                        // Obtenemos el item de la fila actual
+                        ProductoVenta item = getTableView().getItems().get(getIndex());
+                        // Lo eliminamos de la lista de la venta
+                        listaVenta.remove(item);
+                        // Actualizamos los totales
+                        actualizarTotales();
+                    });
+                }
+
+                @Override
+                public void updateItem(Void item, boolean empty) {
+                    super.updateItem(item, empty);
+                    setGraphic(empty ? null : btnEliminar);
+                    if (!empty) setAlignment(Pos.CENTER);
+                }
+            };
+        };
+        // --- CORRECCIÓN AQUÍ ---
+        colAcciones.setCellFactory(cellFactory);
+    }
+
+
+
+
+
     @FXML
-    private Button btn_cancelar;
+    private void handleAgregarProducto() {
+        if(productoSeleccionadoParaVenta == null){
+            mostrarAlerta("Error", "No se ha seleccionado ningún producto.");
+            return;
+        }
+        int cantidad = spinnerCantidad.getValue();
+        if(cantidad <= 0) {
+            mostrarAlerta("Error", "La cantidad debe ser mayor que cero.");
+            return;
+        }
+
+        if(cantidad > productoSeleccionadoParaVenta.getStock()){
+            mostrarAlerta("Error", "No hay suficiente stock para el producto seleccionado.");
+            return;
+        }
+
+
+        boolean productoYaEnLista = false;
+        for (ProductoVenta item : listaVenta) {
+            if (item.getProducto().getId() == productoSeleccionadoParaVenta.getId()) {
+                // Si el producto ya está, actualiza la cantidad
+                item.setCantidad(item.getCantidad() + cantidad);
+                productosTable.refresh();
+                // UX Mejora: Seleccionar y hacer scroll a la fila actualizada
+                productosTable.getSelectionModel().select(item);
+                productosTable.scrollTo(item);
+                productoYaEnLista = true;
+                break;
+            }
+        }
+
+        if (!productoYaEnLista) {
+            listaVenta.add(new ProductoVenta(productoSeleccionadoParaVenta, cantidad));
+        }
+
+        fieldBuscarProducto.clear();
+        productoSeleccionadoParaVenta = null;
+        spinnerCantidad.getValueFactory().setValue(1);
+        actualizarTotales();
+    }
+
+    public Producto getProducto(){
+        return producto;
+    }
+
+    private void actualizarTotales(){
+        double subtotal = 0;
+        for (ProductoVenta item : listaVenta) {
+            subtotal += item.getSubtotal();
+        }
+
+        double descuento = 0;
+        try {
+            if (!fieldDescuento.getText().isEmpty()) {
+                descuento = Double.parseDouble(fieldDescuento.getText());
+            }
+        } catch (NumberFormatException e) {
+            descuento = 0;
+        }
+
+        double baseImponible = subtotal - descuento;
+        double iva = baseImponible * TASA_IVA;
+        double total = baseImponible + iva;
+
+        double montoRecibido = 0;
+        try {
+            if (!fieldMontoRecibido.getText().isEmpty()){
+                montoRecibido = Double.parseDouble(fieldMontoRecibido.getText());
+            }
+        }catch (NumberFormatException e){
+            montoRecibido = 0;
+        }
+
+        double vuelto = (comboBoxMetodoPago.getValue().equals("Efectivo") && montoRecibido > total) ? montoRecibido - total : 0;
+        labelSubtotal.setText(String.format("$ %.2f", subtotal));
+        labelDescuento.setText(String.format("-$ %.2f", descuento));
+        labelIva.setText(String.format("$ %.2f", iva));
+        labelTotal.setText(String.format("$ %.2f", total));
+        labelVuelto.setText(String.format("$ %.2f", vuelto));
+
+    }
+
     @FXML
-    private Button btn_eliminarProducto;
+    private void handleFinalizarVenta() {
+        if (listaVenta.isEmpty()) {
+            mostrarAlerta("Error", "No hay productos en la venta.");
+            return;
+        }
+        if(clienteSeleccionado == null) {
+            mostrarAlerta("Error", "No se ha seleccionado ningún cliente.");
+            return;
+        }
+
+        double subtotal = listaVenta.stream().mapToDouble(ProductoVenta::getSubtotal).sum();
+        double descuento = 0;
+        try {
+            if (!fieldDescuento.getText().isEmpty()) {
+                descuento = Double.parseDouble(fieldDescuento.getText());
+            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        double totalFinal = (subtotal - descuento) * (1 + TASA_IVA);
+
+        Venta nuevaVenta = new Venta();
+        nuevaVenta.setClienteCedula(clienteSeleccionado.getCedula());
+        nuevaVenta.setVentaTotal(BigDecimal.valueOf(totalFinal));
+        nuevaVenta.setFechaVenta(LocalDateTime.now());
+
+        boolean exito = ventaDAO.guardarVenta(nuevaVenta, listaVenta);
+        if (exito) {
+            mostrarAlertaDeExito("Venta Exitosa", "La venta se ha registrado correctamente.");
+            limpiarFormularioVenta();
+        }else {
+            mostrarAlerta("Error", "No se pudo registrar la venta. Inténtalo de nuevo.");
+        }
+    }
+
     @FXML
-    private Button btn_finalizarVenta;
+    private void handleCancelarVenta() {
+        if (listaVenta.isEmpty()) return;
+
+        Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmacion.setTitle("Cancelar Venta");
+        confirmacion.setHeaderText("¿Estás seguro de que deseas cancelar la venta actual?");
+        confirmacion.setContentText("Se perderán todos los productos agregados.");
+
+        Optional<ButtonType> resultado = confirmacion.showAndWait();
+        if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
+            limpiarFormularioVenta();
+        }
+    }
+
+    @FXML
+    private void handleMostrarTodosLosClientes() {
+        clienteSeleccionado = clienteDAO.getClientePorCedula("00000000");
+
+        fieldBuscarCliente.setEditable(true);
+        fieldBuscarCliente.clear();
+        fieldBuscarCliente.requestFocus();
+    }
+
+    private void limpiarFormularioVenta() {
+        listaVenta.clear();
+        fieldBuscarProducto.clear();
+        fieldDescuento.clear();
+        fieldMontoRecibido.clear();
+        spinnerCantidad.getValueFactory().setValue(1);
+
+        // Restablecer cliente por defecto
+        this.clienteSeleccionado = clienteDAO.getClientePorCedula("00000000");
+        fieldBuscarCliente.setText(this.clienteSeleccionado != null ? this.clienteSeleccionado.toString() : "");
+
+        actualizarTotales();
+    }
+
+    private void mostrarAlerta(String titulo, String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+
+    private void mostrarAlertaDeExito(String titulo, String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+
+
 }

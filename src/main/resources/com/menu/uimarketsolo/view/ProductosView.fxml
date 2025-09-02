@@ -38,7 +38,7 @@
             <Insets bottom="15.0" />
          </VBox.margin>
       </VBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="1017.0" spacing="20.0">
+      <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="1043.0" spacing="20.0">
          <children>
             <StackPane alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="440.0">
                <children>
@@ -63,7 +63,7 @@
                   </ImageView>
                </children>
             </StackPane>
-            <Button fx:id="agregarProductoButton" mnemonicParsing="false" onAction="#handleAgregarProducto" prefHeight="40.0" prefWidth="187.0" style="-fx-background-color: #4e8767;" text="AGREGAR" textFill="WHITE" HBox.hgrow="ALWAYS">
+            <Button fx:id="agregarProductoButton" mnemonicParsing="false" onAction="#handleAgregarProducto" prefHeight="45.0" prefWidth="180.0" style="-fx-background-color: #4e8767;" text="AGREGAR" textFill="WHITE" HBox.hgrow="ALWAYS">
                <font>
                   <Font name="SansSerif Bold" size="14.0" />
                </font>
@@ -71,7 +71,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="editarProductoButton" mnemonicParsing="false" onAction="#handleEditarProducto" prefHeight="40.0" prefWidth="175.0" style="-fx-background-color: #525658;" text="EDITAR" textFill="WHITE" HBox.hgrow="ALWAYS">
+            <Button fx:id="editarProductoButton" mnemonicParsing="false" onAction="#handleEditarProducto" prefHeight="45.0" prefWidth="180.0" style="-fx-background-color: #525658;" text="EDITAR" textFill="WHITE" HBox.hgrow="ALWAYS">
                <font>
                   <Font name="SansSerif Bold" size="14.0" />
                </font>
@@ -79,7 +79,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="gestionarMarcasButton" mnemonicParsing="false" onAction="#handleGestionarMarcas" prefHeight="40.0" prefWidth="197.0" style="-fx-background-color: transparent;" text="GESTIONAR MARCAS" textOverrun="CLIP">
+            <Button fx:id="gestionarMarcasButton" mnemonicParsing="false" onAction="#handleGestionarMarcas" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: transparent;" text="GESTIONAR MARCAS" textOverrun="CLIP">
                <font>
                   <Font name="SansSerif Bold" size="14.0" />
                </font>
@@ -107,7 +107,7 @@
                         <Insets left="30.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Selecciona el producto, luego haz click en la accion que deseas realizar.">
+                  <Label text="Selecciona un Producto, luego haz click en la accion que deseas realizar.">
                      <font>
                         <Font size="14.0" />
                      </font>
