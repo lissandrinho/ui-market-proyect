@@ -10,14 +10,13 @@ import java.util.List;
 
 public class VentaDAO {
 
-    public boolean guardarVenta(Venta venta, List<ProductoVenta> detalles) {
+    public boolean guardarVenta(Venta venta, List<ProductoVenta> detalles, String metodoPago) {
         String sqlVenta = "INSERT INTO ventas(total_venta, cliente_cedula, fecha_venta) VALUES (?, ?, ?)";
         String sqlDetalle = "INSERT INTO detalle_ventas(venta_id, producto_id, cantidad, precio_unitario) VALUES (?, ?, ?, ?)";
         String sqlUpdateStock = "UPDATE productos SET stock = stock - ? WHERE id = ?";
         String sqlMovimientoStock = "INSERT INTO movimientos_stock(producto_id, tipo_movimiento, cantidad, motivo," +
                 " fecha_movimiento) VALUES (?, 'VENTA', ?, ?, ?)";
-        String sqlTransaccionCaja = "INSERT INTO transacciones_caja(tipo_transaccion, " +
-                "monto, venta_id) VALUES ('VENTA', ?, ?)";
+        String sqlTransaccionCaja = "INSERT INTO transacciones_caja(tipo_transaccion, monto, venta_id) VALUES (?, ?, ?)";
 
 
         Connection conn = null;
@@ -67,12 +66,12 @@ public class VentaDAO {
                     pstmtMovimiento.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
                     pstmtMovimiento.executeUpdate();
                 }
-
-                try(PreparedStatement pstmtcaja = conn.prepareStatement(sqlTransaccionCaja)){
-                    pstmtcaja.setBigDecimal(1, venta.getVentaTotal());
-                    pstmtcaja.setInt(2, ventaId);
-                    pstmtcaja.executeUpdate();
-
+                //Registrar el movimiento en caja
+                try(PreparedStatement pstmtCaja = conn.prepareStatement(sqlTransaccionCaja)){
+                    pstmtCaja.setString(1, metodoPago);
+                    pstmtCaja.setBigDecimal(2, venta.getVentaTotal());
+                    pstmtCaja.setInt(3, ventaId);
+                    pstmtCaja.executeUpdate();
                 }
             }
             conn.commit();

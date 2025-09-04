@@ -10,15 +10,21 @@ import com.menu.uimarketsolo.model.Venta;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import org.controlsfx.control.textfield.TextFields;
 
 import javafx.util.Callback;
+
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -331,15 +337,16 @@ public class VentasController {
 
         Venta nuevaVenta = new Venta();
         nuevaVenta.setClienteCedula(clienteSeleccionado.getCedula());
-        nuevaVenta.setVentaTotal(BigDecimal.valueOf(totalFinal));
+        nuevaVenta.setVentaTotal(new BigDecimal(labelTotal.getText().replace("$", "").trim()));
         nuevaVenta.setFechaVenta(LocalDateTime.now());
 
-        boolean exito = ventaDAO.guardarVenta(nuevaVenta, listaVenta);
+        boolean exito = ventaDAO.guardarVenta(nuevaVenta, listaVenta, comboBoxMetodoPago.getValue());
+
         if (exito) {
             mostrarAlertaDeExito("Venta Exitosa", "La venta se ha registrado correctamente.");
             limpiarFormularioVenta();
-        }else {
-            mostrarAlerta("Error", "No se pudo registrar la venta. Inténtalo de nuevo.");
+        } else {
+            mostrarAlerta("Error", "No se pudo registrar la venta.");
         }
     }
 
@@ -365,6 +372,24 @@ public class VentasController {
         fieldBuscarCliente.setEditable(true);
         fieldBuscarCliente.clear();
         fieldBuscarCliente.requestFocus();
+    }
+
+    @FXML
+    private void handleAbrirCierreCaja(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/menu/uimarketsolo/view" +
+                    "/CierreCajaView.fxml"));
+            Parent root = loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Cierre de Caja");
+            dialogStage.initOwner(fieldBuscarCliente.getScene().getWindow());
+
+            dialogStage.setScene((new Scene(root)));
+            dialogStage.showAndWait();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     private void limpiarFormularioVenta() {

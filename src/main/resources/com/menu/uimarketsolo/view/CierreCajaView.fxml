@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="476.0" prefWidth="823.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.CierreCajaController">
+   <children>
+      <VBox prefHeight="74.0" prefWidth="560.0">
+         <children>
+            <Label text="Cierre de Caja" textFill="#4e8767">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="36.0" />
+               </font>
+            </Label>
+            <Label text="Rellene los campos con los datos correspondientes">
+               <font>
+                  <Font name="SansSerif Regular" size="16.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="20.0" top="20.0" />
+         </padding>
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </VBox>
+      <HBox prefHeight="35.0" prefWidth="600.0" spacing="5.0">
+         <children>
+            <Label text="Arqueo de Caja del Dia:">
+               <font>
+                  <Font name="SansSerif Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="fechaDiaLabel" text="Fecha del dia">
+               <font>
+                  <Font name="SansSerif Regular" size="18.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="20.0" top="10.0" />
+         </padding>
+      </HBox>
+      <HBox prefHeight="140.0" prefWidth="762.0" spacing="5.0">
+         <children>
+            <VBox alignment="CENTER_LEFT" prefHeight="91.0" prefWidth="260.0" spacing="5.0" style="-fx-background-color: #282c2d; -fx-background-radius: 10; -fx-border-radius: 10;">
+               <children>
+                  <Label text="Sistema:" textFill="WHITE">
+                     <font>
+                        <Font name="SansSerif Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <HBox prefHeight="20.0" prefWidth="158.0" spacing="5.0">
+                     <children>
+                        <Label prefHeight="20.0" text="Total en Efectivo:" textFill="WHITE">
+                           <font>
+                              <Font name="SansSerif Regular" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="totalEfectivoLabel" prefHeight="20.0" prefWidth="105.0" textFill="WHITE" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font name="SansSerif Regular" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="15.0" right="10.0" />
+               </padding>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.30000001192092896" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" prefHeight="105.0" prefWidth="260.0" spacing="10.0" style="-fx-background-color: #282c2d; -fx-background-radius: 10; -fx-border-radius: 10;">
+               <children>
+                  <Label text="Caja:" textFill="WHITE">
+                     <font>
+                        <Font name="SansSerif Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <HBox prefHeight="20.0" prefWidth="158.0" spacing="5.0">
+                     <children>
+                        <Label prefHeight="20.0" text="Ingrese el efectivo contado:" textFill="WHITE">
+                           <font>
+                              <Font name="SansSerif Regular" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <TextField fx:id="fieldTotalEfectivo" prefHeight="35.0" prefWidth="226.0" stylesheets="@../../../../css/field.css">
+                     <font>
+                        <Font name="SansSerif Regular" size="16.0" />
+                     </font>
+                  </TextField>
+               </children>
+               <padding>
+                  <Insets left="15.0" right="15.0" />
+               </padding>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.30000001192092896" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </VBox>
+         </children>
+         <padding>
+            <Insets left="20.0" top="10.0" />
+         </padding>
+      </HBox>
+      <HBox prefHeight="140.0" prefWidth="762.0" spacing="5.0">
+         <children>
+            <VBox alignment="CENTER_LEFT" prefHeight="91.0" prefWidth="260.0" spacing="5.0" style="-fx-background-color: #282c2d; -fx-background-radius: 10; -fx-border-radius: 10;">
+               <children>
+                  <Label fx:id="fechaDiaLabel11" text="Debito / Credito" textFill="WHITE">
+                     <font>
+                        <Font name="SansSerif Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <HBox prefHeight="20.0" prefWidth="158.0" spacing="5.0">
+                     <children>
+                        <Label prefHeight="20.0" text="Total en Tarjeta:" textFill="WHITE">
+                           <font>
+                              <Font name="SansSerif Regular" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="totalTarjetaLabel" prefHeight="20.0" prefWidth="105.0" textFill="WHITE" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font name="SansSerif Regular" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="15.0" right="10.0" />
+               </padding>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.30000001192092896" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" prefHeight="105.0" prefWidth="260.0" spacing="10.0" style="-fx-background-color: #282c2d; -fx-background-radius: 10; -fx-border-radius: 10;">
+               <children>
+                  <Label text="Caja:" textFill="WHITE">
+                     <font>
+                        <Font name="SansSerif Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <HBox prefHeight="20.0" prefWidth="158.0" spacing="5.0">
+                     <children>
+                        <Label prefHeight="20.0" text="Ingrese el total en vouchers:" textFill="WHITE">
+                           <font>
+                              <Font name="SansSerif Regular" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <TextField fx:id="fieldTotalTarjeta" prefHeight="35.0" prefWidth="226.0" stylesheets="@../../../../css/field.css">
+                     <font>
+                        <Font name="SansSerif Regular" size="16.0" />
+                     </font>
+                  </TextField>
+               </children>
+               <padding>
+                  <Insets left="15.0" right="15.0" />
+               </padding>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.30000001192092896" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" prefHeight="105.0" prefWidth="260.0" spacing="10.0" style="-fx-background-color: #282c2d; -fx-background-radius: 10; -fx-border-radius: 10;">
+               <children>
+                  <Label text="Diferencia:" textFill="WHITE">
+                     <font>
+                        <Font name="SansSerif Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <HBox prefHeight="20.0" prefWidth="158.0" spacing="5.0">
+                     <children>
+                        <Label fx:id="diferenciaLabel" prefHeight="20.0" textFill="WHITE">
+                           <font>
+                              <Font name="SansSerif Regular" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="15.0" right="15.0" />
+               </padding>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.30000001192092896" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </VBox>
+         </children>
+         <padding>
+            <Insets left="20.0" top="10.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" prefHeight="69.0" prefWidth="823.0" spacing="20.0">
+         <children>
+            <Button fx:id="btnConfirmarCierre" mnemonicParsing="false" onAction="#handleConfirmarCierre" prefHeight="40.0" prefWidth="205.0" style="-fx-background-color: #4e8767;" text="CONFIRMAR CIERRE" textFill="WHITE">
+               <font>
+                  <Font name="SansSerif Bold" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+         <padding>
+            <Insets right="20.0" />
+         </padding>
+      </HBox>
+   </children>
+</VBox>

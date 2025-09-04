@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -15,27 +14,13 @@
 
 <BorderPane fx:id="mainPane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.MainController">
    <left>
-      <VBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-background-color: #282c2d;" BorderPane.alignment="TOP_CENTER">
+      <VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: #282c2d;" BorderPane.alignment="TOP_CENTER">
          <children>
-            <Label graphicTextGap="5.0" prefHeight="110.0" prefWidth="250.0" text="UI MARKET" textFill="WHITE" VBox.vgrow="ALWAYS">
-               <graphic>
-                  <ImageView fitHeight="110.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../icons/LogoMax-removebg-preview.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <font>
-                  <Font name="Impact" size="22.0" />
-               </font>
-               <padding>
-                  <Insets left="40.0" top="30.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Label>
-            <Region prefHeight="40.0" prefWidth="250.0" VBox.vgrow="ALWAYS" />
+            <ImageView fitHeight="208.0" fitWidth="176.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+               <image>
+                  <Image url="@../../../../icons/logoUI.png" />
+               </image>
+            </ImageView>
             <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" maxHeight="60.0" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="INICIO" textFill="WHITE">
                <font>
                   <Font name="Franklin Gothic Medium" size="18.0" />
@@ -148,19 +133,19 @@
                </VBox.margin>
             </Button>
             <Region prefHeight="70.0" prefWidth="250.0" VBox.vgrow="ALWAYS" />
-            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" maxHeight="60.0" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="Salir" textFill="#b85456">
+            <Button fx:id="usuarioButtton" alignment="BASELINE_LEFT" graphicTextGap="15.0" maxHeight="60.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleUsuarioClick" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="USUARIO" textFill="WHITE">
                <font>
                   <Font name="Franklin Gothic Medium" size="18.0" />
                </font>
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../icons/exit_to_app_500dp_C1585A_FILL0_wght400_GRAD0_opsz48.png" />
+                        <Image url="@../../../../icons/usuario.png" />
                      </image>
                   </ImageView>
                </graphic>
                <padding>
-                  <Insets left="75.0" />
+                  <Insets left="50.0" />
                </padding>
                <cursor>
                   <Cursor fx:constant="HAND" />

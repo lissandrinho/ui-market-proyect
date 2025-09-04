@@ -9,11 +9,14 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
 <VBox alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.VentasController">
@@ -38,7 +41,7 @@
             <Insets bottom="10.0" />
          </VBox.margin>
       </VBox>
-      <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="35.0" prefWidth="1085.0" spacing="60.0">
+      <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="35.0" prefWidth="1085.0" spacing="55.0">
          <children>
             <StackPane prefHeight="35.0" prefWidth="380.0">
                <children>
@@ -68,14 +71,14 @@
             </StackPane>
             <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="35.0" prefWidth="200.0" spacing="5.0">
                <children>
-                  <Label text="N. Factura:">
+                  <Label text="N° Factura:">
                      <font>
                         <Font name="SansSerif Bold" size="16.0" />
                      </font>
                   </Label>
                   <Label fx:id="labelNumeroFactura">
                      <font>
-                        <Font name="SansSerif Bold" size="16.0" />
+                        <Font name="SansSerif Regular" size="16.0" />
                      </font>
                   </Label>
                </children>
@@ -89,7 +92,7 @@
                   </Label>
                   <Label fx:id="labelFecha">
                      <font>
-                        <Font name="SansSerif Bold" size="16.0" />
+                        <Font name="SansSerif Regular" size="16.0" />
                      </font>
                   </Label>
                </children>
@@ -211,7 +214,10 @@
                   <ComboBox fx:id="comboBoxMetodoPago" prefHeight="35.0" prefWidth="177.0" style="-fx-border-color: #666666; -fx-background-color: WHITE; -fx-background-radius: 10; -fx-border-radius: 10;">
                      <padding>
                         <Insets left="5.0" />
-                     </padding></ComboBox>
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></ComboBox>
                </children>
                <HBox.margin>
                   <Insets />
@@ -330,6 +336,13 @@
                <padding>
                   <Insets bottom="15.0" left="20.0" right="20.0" top="20.0" />
                </padding>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.30000001192092896" />
+                     </color>
+                  </DropShadow>
+               </effect>
             </VBox>
          </children>
          <padding>
@@ -341,6 +354,14 @@
       </HBox>
       <HBox prefHeight="52.0" prefWidth="1055.0" spacing="20.0">
          <children>
+            <Button fx:id="cierreCajaButton" alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#handleAbrirCierreCaja" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: transparent;" text="Cierre de Caja">
+               <font>
+                  <Font name="SansSerif Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <Button fx:id="cancelarVentaButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleCancelarVenta" prefHeight="50.0" prefWidth="175.0" style="-fx-background-color: #525658;" text="CANCELAR" textFill="WHITE" HBox.hgrow="ALWAYS">
                <font>
                   <Font name="SansSerif Bold" size="14.0" />
@@ -352,7 +373,8 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="finalizarVentaButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleFinalizarVenta" prefHeight="50.0" prefWidth="162.0" style="-fx-background-color: #4e8767;" text="FINALIZAR VENTA" textFill="WHITE" HBox.hgrow="ALWAYS">
+            <Region prefHeight="52.0" prefWidth="260.0" />
+            <Button fx:id="finalizarVentaButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleFinalizarVenta" prefHeight="50.0" prefWidth="175.0" style="-fx-background-color: #4e8767;" text="FINALIZAR VENTA" textFill="WHITE" HBox.hgrow="ALWAYS">
                <font>
                   <Font name="SansSerif Bold" size="14.0" />
                </font>
@@ -360,7 +382,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                <HBox.margin>
-                  <Insets left="460.0" />
+                  <Insets />
                </HBox.margin>
             </Button>
             <HBox alignment="CENTER" prefHeight="52.0" prefWidth="210.0">
