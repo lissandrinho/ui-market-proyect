@@ -60,7 +60,7 @@ public class UsuariosController {
         nombreCompletoLabel.setText(usuarioActual.getNombreCompleto());
         rolUsuarioLabel.setText(usuarioActual.getRol());
 
-        boolean esAdmin = usuarioActual.getRol().equalsIgnoreCase("admin");
+        boolean esAdmin = usuarioActual.getRol().equalsIgnoreCase("Administrador");
         tableViewUsuarios.setVisible(esAdmin);
         tableViewUsuarios.setManaged(esAdmin);
         hboxOcultarBotones.setVisible(esAdmin);

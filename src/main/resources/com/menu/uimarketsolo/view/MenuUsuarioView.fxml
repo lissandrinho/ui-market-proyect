@@ -21,7 +21,7 @@
             <Font name="Franklin Gothic Medium" size="36.0" />
          </font>
       </Label>
-      <HBox fx:id="hboxOcultarBotones" alignment="CENTER" prefHeight="62.0" prefWidth="508.0" style="-fx-background-color: #4e8767; -fx-background-radius: 10; -fx-border-color: 10;">
+      <HBox fx:id="hboxOcultarBotones" alignment="CENTER" prefHeight="62.0" prefWidth="508.0">
          <children>
             <Button fx:id="NuevoUsuarioButton" mnemonicParsing="false" onAction="#handleNuevoUsuario" prefHeight="50.0" prefWidth="336.0" style="-fx-background-color: transparent;" text="Nuevo Usuario" textFill="WHITE">
                <font>

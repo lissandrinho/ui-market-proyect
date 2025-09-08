@@ -30,7 +30,7 @@ public class FormularioUsuarioController {
         this.usuarioDAO = new UsuarioDAO();
 
 
-        comboBoxRol.setItems(FXCollections.observableArrayList("Admin", "Vendedor"));
+        comboBoxRol.setItems(FXCollections.observableArrayList("Administrador", "Cajero"));
     }
 
     public void initData(Usuario usuario) {

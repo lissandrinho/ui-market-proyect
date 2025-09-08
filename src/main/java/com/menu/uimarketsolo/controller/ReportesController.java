@@ -25,7 +25,7 @@ public class ReportesController {
 
     @FXML private DatePicker datePickerDesde;
     @FXML private DatePicker datePickerhasta;
-    @FXML private Button filtrarFechaButton;
+
 
     @FXML private TableView<Producto> productoTableView;
     @FXML private TableColumn<Producto, String> ProductoMasVendidoColumn;
@@ -104,9 +104,14 @@ public class ReportesController {
 
         // LÓGICA PARA LOS LABELS DE RESUMEN
         Map<String, BigDecimal> resumen = reporteDAO.getResumenPorFechas(fechaInicio, fechaFin);
-        ventasRealizadasLabel.setText(resumen.getOrDefault("ventasRealizadas", BigDecimal.ZERO).toPlainString());
-        cantidadVendidosLabel.setText(resumen.getOrDefault("productosVendidos", BigDecimal.ZERO).toPlainString());
-        ingresosTotalesLabel.setText(String.format("$ %.2f", resumen.getOrDefault("ingresosTotales", BigDecimal.ZERO)));
+        BigDecimal ventas = resumen.get("ventasRealizadas");
+        ventasRealizadasLabel.setText(ventas != null ? ventas.toPlainString() : "0");
+
+        BigDecimal productos = resumen.get("productosVendidos");
+        cantidadVendidosLabel.setText(productos != null ? productos.toPlainString() : "0");
+
+        BigDecimal ingresos = resumen.get("ingresosTotales");
+        ingresosTotalesLabel.setText(String.format("$ %.2f", ingresos != null ? ingresos : BigDecimal.ZERO));
 
         // Cargar las tablas
         List<VentaResumen> ventasResumidas = reporteDAO.getResumenVentas(fechaInicio, fechaFin);

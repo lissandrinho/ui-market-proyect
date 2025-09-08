@@ -18,12 +18,9 @@ public class MainController {
 
     @FXML
     private BorderPane mainPane;
-    @FXML private Button btnVentas;
-    @FXML private Button btnStock;
-    @FXML private Button btnClientes;
     @FXML private Button btnReportes;
     @FXML private Button btnProveedores;
-    @FXML private Button btnUsuarios;
+
 
 
 
@@ -31,7 +28,7 @@ public class MainController {
     @FXML
     public void initialize() {
         Usuario usuarioLogueado = SessionManager.getInstance().getUsuarioLogueado();
-        if(usuarioLogueado != null && !usuarioLogueado.getRol().equalsIgnoreCase("admin")){
+        if(usuarioLogueado != null && !usuarioLogueado.getRol().equalsIgnoreCase("Administrador")){
             btnProveedores.setVisible(false);
             btnProveedores.setManaged(false);
             btnReportes.setVisible(false);

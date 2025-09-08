@@ -112,29 +112,7 @@ public class ReporteDAO {
         return marcas;
     }
 
-    public BigDecimal getIngresosTotalesPorPeriodo(LocalDate fechaInicio, LocalDate fechaFin) {
-        String sql = "SELECT SUM(total_venta) FROM ventas WHERE DATE(fecha_venta) BETWEEN ? AND ?";
-        BigDecimal total = BigDecimal.ZERO;
 
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setDate(1, Date.valueOf(fechaInicio));
-            pstmt.setDate(2, Date.valueOf(fechaFin));
-
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    BigDecimal resultado = rs.getBigDecimal(1);
-                    if (resultado != null) {
-                        total = resultado;
-                    }
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return total;
-    }
 
     public Map<String, BigDecimal> getResumenPorFechas(LocalDate fechaInicio, LocalDate fechaFin) {
         Map<String, BigDecimal> resumen = new HashMap<>();
