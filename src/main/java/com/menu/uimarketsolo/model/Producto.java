@@ -16,27 +16,33 @@ public class Producto {
     private int proveedorId;
     private String nombreMarca;
     private String nombreProveedor;
+    private int categoriaId;
+    private String nombreCategoria;
 
 
     // Constructor vacío
     public Producto() {
     }
 
-    public Producto(int id, String sku, String nombre, double precioVenta, int stock,
-                    LocalDateTime fechaCreacion, String descripcion ,String imagenPath, int marca_id, int proveedor_id){
 
+    public Producto(int id, String sku, String descripcion, String nombre, double precioVenta, int stock, LocalDateTime fechaCreacion,
+                    String imagenPath, int marcaId, int proveedorId, String nombreMarca,
+                    String nombreProveedor, String nombreCategoria,int categoriaId) {
         this.id = id;
         this.sku = sku;
-        this.nombre = nombre;
         this.descripcion = descripcion;
+        this.nombre = nombre;
         this.precioVenta = precioVenta;
         this.stock = stock;
         this.fechaCreacion = fechaCreacion;
         this.imagenPath = imagenPath;
-        this.marcaId = marca_id;
-        this.proveedorId = proveedor_id;
+        this.marcaId = marcaId;
+        this.proveedorId = proveedorId;
+        this.nombreMarca = nombreMarca;
+        this.nombreProveedor = nombreProveedor;
+        this.categoriaId = categoriaId;
+        this.nombreCategoria = nombreCategoria;
     }
-
 
     public int getId() {
         return id;
@@ -130,6 +136,22 @@ public class Producto {
 
     public void setNombreProveedor(String nombreProveedor) {
         this.nombreProveedor = nombreProveedor;
+    }
+
+    public int getCategoriaId() {
+        return categoriaId;
+    }
+
+    public void setCategoriaId(int categoriaId) {
+        this.categoriaId = categoriaId;
+    }
+
+    public String getNombreCategoria() {
+        return nombreCategoria;
+    }
+
+    public void setNombreCategoria(String nombreCategoria) {
+        this.nombreCategoria = nombreCategoria;
     }
 
     @Override

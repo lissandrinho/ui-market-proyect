@@ -1,10 +1,13 @@
 package com.menu.uimarketsolo.controller;
 
+import com.menu.uimarketsolo.SessionManager;
 import com.menu.uimarketsolo.dao.MarcaDAO;
 import com.menu.uimarketsolo.dao.ProveedorDAO;
+import com.menu.uimarketsolo.dao.ProveedorMarcaDAO;
 import com.menu.uimarketsolo.model.Cliente;
 import com.menu.uimarketsolo.model.Marca;
 import com.menu.uimarketsolo.model.Proveedor;
+import com.menu.uimarketsolo.model.Usuario;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +19,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -54,15 +58,25 @@ public class ProveedorController {
     private TableColumn<Proveedor, Void> accionesColumn;
     @FXML
     private ListView<Marca> listViewMarcasAsignadas;
+    @FXML
+    private HBox hboxBotonesAdmin;
 
     private ProveedorDAO proveedorDAO;
     private MarcaDAO marcaDAO;
+    private ProveedorMarcaDAO proveedorMarcaDAO;
 
 
     @FXML
     private void initialize() {
         this.proveedorDAO = new ProveedorDAO();
         this.marcaDAO = new MarcaDAO();
+        this.proveedorMarcaDAO = new ProveedorMarcaDAO();
+        Usuario usuarioLogueado = SessionManager.getInstance().getUsuarioLogueado();
+        if (usuarioLogueado != null && !usuarioLogueado.getRol().equalsIgnoreCase("admin")){
+            hboxBotonesAdmin.setVisible(false);
+            hboxBotonesAdmin.setManaged(false);
+            accionesColumn.setVisible(false);
+        }
 
         configurarColumnas();
         configurarColumnaAcciones();
@@ -186,7 +200,6 @@ public class ProveedorController {
         }
     }
 
-    @FXML
     private void handleEliminarProveedor(Proveedor proveedor) {
 
         if (proveedor == null) return;
@@ -202,6 +215,8 @@ public class ProveedorController {
 
         alertaConfirmacion.showAndWait().ifPresent(respuesta -> {
             if (respuesta == ButtonType.OK) {
+                // Primero eliminamos las asignaciones y luego el proveedor
+                proveedorMarcaDAO.eliminarAsignacionesPorProveedor(proveedor.getId());
                 proveedorDAO.eliminarProveedor(proveedor.getId());
                 cargarProveedores();
             }

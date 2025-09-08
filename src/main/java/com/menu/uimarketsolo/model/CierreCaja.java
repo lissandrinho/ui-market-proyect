@@ -15,6 +15,7 @@ public class CierreCaja {
     private BigDecimal totalContadoTarjeta;
     private BigDecimal diferenciaTarjeta;
     private int usuarioId;
+    private String nombreUsuario;
 
     public CierreCaja(){
 
@@ -32,6 +33,22 @@ public class CierreCaja {
         this.totalContadoTarjeta = totalContadoTarjeta;
         this.diferenciaTarjeta = diferenciaTarjeta;
         this.usuarioId = usuarioId;
+    }
+
+    public CierreCaja(int id, LocalDateTime fechaCierre, BigDecimal totalSistemaEfectivo, BigDecimal
+                              totalContadoEfectivo, BigDecimal diferenciaEfectivo,
+                      BigDecimal totalSistemaTarjeta, BigDecimal totalContadoTarjeta, BigDecimal diferenciaTarjeta,
+                      int usuarioId, String nombreUsuario) {
+        this.id = id;
+        this.fechaCierre = fechaCierre;
+        this.totalSistemaEfectivo = totalSistemaEfectivo;
+        this.totalContadoEfectivo = totalContadoEfectivo;
+        this.diferenciaEfectivo = diferenciaEfectivo;
+        this.totalSistemaTarjeta = totalSistemaTarjeta;
+        this.totalContadoTarjeta = totalContadoTarjeta;
+        this.diferenciaTarjeta = diferenciaTarjeta;
+        this.usuarioId = usuarioId;
+        this.nombreUsuario = nombreUsuario;
     }
 
     public int getId() {
@@ -104,6 +121,14 @@ public class CierreCaja {
 
     public void setUsuarioId(int usuarioId) {
         this.usuarioId = usuarioId;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 
     @Override

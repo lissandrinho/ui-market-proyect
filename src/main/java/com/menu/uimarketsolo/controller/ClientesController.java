@@ -1,7 +1,9 @@
 package com.menu.uimarketsolo.controller;
 
+import com.menu.uimarketsolo.SessionManager;
 import com.menu.uimarketsolo.dao.ClienteDAO;
 import com.menu.uimarketsolo.model.Cliente;
+import com.menu.uimarketsolo.model.Usuario;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image; // Importación correcta de Image
 import javafx.scene.image.ImageView; // ERROR 1: Importación correcta de ImageView
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -52,12 +55,23 @@ public class ClientesController {
     @FXML
     private Button editarClienteButton;
 
+    @FXML
+    private HBox hboxBotonesAdmin;
 
     private ClienteDAO clienteDAO; // ERROR 3: Se eliminó la declaración duplicada
 
     @FXML
     public void initialize() {
         this.clienteDAO = new ClienteDAO();
+
+        Usuario usuarioLogueado = SessionManager.getInstance().getUsuarioLogueado();
+        if (usuarioLogueado != null && !usuarioLogueado.getRol().equalsIgnoreCase("admin")){
+            hboxBotonesAdmin.setVisible(false);
+            hboxBotonesAdmin.setManaged(false);
+
+            colAcciones.setVisible(false);
+
+        }
 
         configurarColumnas();
         configurarColumnaAcciones();
@@ -113,9 +127,7 @@ public class ClientesController {
     @FXML
     private void handleEditarCliente() {
         Cliente clienteSeleccionado = clientesTable.getSelectionModel().getSelectedItem();
-        if (clienteSeleccionado != null) {
-            abrirDialogoCliente(clienteSeleccionado);
-        }
+        abrirDialogoCliente(clienteSeleccionado);
     }
 
     private void abrirDialogoCliente(Cliente cliente) {
@@ -125,11 +137,7 @@ public class ClientesController {
 
             FormularioClienteController controller = loader.getController();
 
-            if (cliente == null) {
-                controller.initData(null, "Nuevo Cliente");
-            } else {
-                controller.initData(cliente, "Editar Cliente");
-            }
+            controller.initData(cliente);
 
             Stage dialogStage = new Stage();
             dialogStage.initModality(Modality.APPLICATION_MODAL);
@@ -223,7 +231,6 @@ public class ClientesController {
 
             clientesTable.setItems(FXCollections.observableArrayList(clientesFiltrados));
         }
-        configurarColumnaAcciones();
     }
 
 

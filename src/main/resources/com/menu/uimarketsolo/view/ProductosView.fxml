@@ -63,30 +63,34 @@
                   </ImageView>
                </children>
             </StackPane>
-            <Button fx:id="agregarProductoButton" mnemonicParsing="false" onAction="#handleAgregarProducto" prefHeight="45.0" prefWidth="180.0" style="-fx-background-color: #4e8767;" text="AGREGAR" textFill="WHITE" HBox.hgrow="ALWAYS">
-               <font>
-                  <Font name="SansSerif Bold" size="14.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button fx:id="editarProductoButton" mnemonicParsing="false" onAction="#handleEditarProducto" prefHeight="45.0" prefWidth="180.0" style="-fx-background-color: #525658;" text="EDITAR" textFill="WHITE" HBox.hgrow="ALWAYS">
-               <font>
-                  <Font name="SansSerif Bold" size="14.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button fx:id="gestionarMarcasButton" mnemonicParsing="false" onAction="#handleGestionarMarcas" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: transparent;" text="GESTIONAR MARCAS" textOverrun="CLIP">
-               <font>
-                  <Font name="SansSerif Bold" size="14.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
+            <HBox fx:id="hboxBotonesAdmin" alignment="CENTER_LEFT" prefHeight="40.0" spacing="5.0">
+               <children>
+                  <Button fx:id="agregarProductoButton" mnemonicParsing="false" onAction="#handleAgregarProducto" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #4e8767;" text="AGREGAR" textFill="WHITE" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="SansSerif Bold" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="editarProductoButton" mnemonicParsing="false" onAction="#handleEditarProducto" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #525658;" text="EDITAR" textFill="WHITE" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="SansSerif Bold" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="gestionarMarcasButton" mnemonicParsing="false" onAction="#handleGestionarMarcas" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: transparent;" text="GESTIONAR MARCAS" textOverrun="CLIP">
+                     <font>
+                        <Font name="SansSerif Bold" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </HBox>
          </children>
          <padding>
             <Insets left="10.0" right="10.0" />
@@ -95,9 +99,9 @@
             <Insets left="20.0" right="20.0" />
          </VBox.margin>
       </HBox>
-      <HBox>
+      <HBox prefHeight="586.0" prefWidth="1099.0">
          <children>
-            <VBox prefHeight="525.0" prefWidth="758.0">
+            <VBox prefHeight="624.0" prefWidth="736.0">
                <children>
                   <Label text="Lista de productos">
                      <font>
@@ -115,7 +119,7 @@
                         <Insets bottom="10.0" left="30.0" />
                      </VBox.margin>
                   </Label>
-                  <TableView fx:id="productosTable" prefHeight="450.0" prefWidth="780.0" stylesheets="@../../../../css/styles.css" VBox.vgrow="ALWAYS">
+                  <TableView fx:id="productosTable" prefHeight="549.0" prefWidth="701.0" stylesheets="@../../../../css/styles.css" VBox.vgrow="ALWAYS">
                     <columns>
                       <TableColumn fx:id="skuColumn" prefWidth="207.0" text="SKU" />
                       <TableColumn fx:id="nombreColumn" prefWidth="153.0" text="Nombre" />
@@ -132,31 +136,35 @@
                   </TableView>
                </children>
             </VBox>
-            <VBox alignment="TOP_CENTER" prefHeight="530.0" prefWidth="300.0" spacing="10.0" style="-fx-background-color: #282c2d; -fx-background-radius: 10;" HBox.hgrow="NEVER">
+            <VBox alignment="TOP_CENTER" prefHeight="604.0" prefWidth="338.0" spacing="10.0" style="-fx-background-color: #282c2d; -fx-background-radius: 10;" HBox.hgrow="NEVER">
                <children>
                   <Label prefHeight="27.0" prefWidth="300.0" text="Detalles del producto" textFill="WHITE">
                      <font>
                         <Font name="SansSerif Bold" size="20.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="10.0" />
+                        <Insets bottom="5.0" />
                      </VBox.margin>
                      <padding>
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <ImageView fx:id="productoImageView" fitHeight="158.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../icons/placeholder.jpg" />
-                     </image>
+                  <HBox alignment="CENTER" style="-fx-background-color: WHITE;">
+                     <children>
+                        <ImageView fx:id="productoImageView" fitHeight="158.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../icons/placeholder.jpg" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <VBox>
                      <VBox.margin>
-                        <Insets bottom="5.0" />
+                        <Insets left="10.0" right="10.0" />
                      </VBox.margin>
-                     <viewport>
-                        <Rectangle2D />
-                     </viewport>
-                  </ImageView>
-                  <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="477.0" spacing="10.0">
                      <children>
                         <Label text="Nombre:" textFill="WHITE">
                            <font>
@@ -167,15 +175,9 @@
                            <font>
                               <Font name="SansSerif Regular" size="16.0" />
                            </font>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
                         </Label>
                      </children>
-                     <VBox.margin>
-                        <Insets left="10.0" right="10.0" />
-                     </VBox.margin>
-                  </HBox>
+                  </VBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="477.0" spacing="10.0">
                      <children>
                         <Label text="SKU:" textFill="WHITE">
@@ -242,6 +244,29 @@
                         <Insets left="10.0" />
                      </VBox.margin>
                   </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="477.0" spacing="10.0">
+                     <children>
+                        <Label text="Categoria:" textFill="WHITE">
+                           <font>
+                              <Font name="SansSerif Bold" size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="categoriaLabel" textFill="WHITE">
+                           <font>
+                              <Font name="SansSerif Regular" size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="18.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </HBox>
                   <VBox prefHeight="221.0" prefWidth="266.0">
                      <children>
                         <Label text="Descripcion:" textFill="WHITE">
@@ -282,7 +307,7 @@
                   <Insets bottom="20.0" left="5.0" right="20.0" />
                </HBox.margin>
                <padding>
-                  <Insets left="10.0" top="15.0" />
+                  <Insets left="10.0" right="10.0" top="15.0" />
                </padding>
             </VBox>
          </children>

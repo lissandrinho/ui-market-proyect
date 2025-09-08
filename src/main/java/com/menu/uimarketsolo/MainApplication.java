@@ -10,14 +10,14 @@ import java.io.IOException;
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("/com/menu/uimarketsolo/view/MainView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1320, 740);
-        stage.setTitle("UI MARKET");
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("/com/menu/uimarketsolo/view/LoginView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 750, 630);
+        stage.setTitle("UI MARKET - Inicio de Sesión");
         stage.setScene(scene);
         stage.show();
 
-        stage.setMinWidth(1420);
-        stage.setMinHeight(780);
+        stage.setMinWidth(750);
+        stage.setMinHeight(630);
 
     }
 

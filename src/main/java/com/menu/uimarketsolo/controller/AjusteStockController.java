@@ -1,14 +1,13 @@
 package com.menu.uimarketsolo.controller;
 
-import com.menu.uimarketsolo.dao.MovimientoStockDAO;
+import com.menu.uimarketsolo.SessionManager;
 import com.menu.uimarketsolo.dao.ProductoDAO;
-import com.menu.uimarketsolo.model.MovimientoStock;
+
 import com.menu.uimarketsolo.model.Producto;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import java.time.LocalDateTime;
 
 public class AjusteStockController {
     @FXML
@@ -27,12 +26,9 @@ public class AjusteStockController {
 
     private Producto productoAjustar;
     private ProductoDAO productoDAO;
-    private MovimientoStockDAO movimientoStockDAO;
 
     public void initialize() {
         this.productoDAO = new ProductoDAO();
-        this.movimientoStockDAO = new MovimientoStockDAO();
-
     }
 
     public void initData(Producto producto) {
@@ -55,38 +51,50 @@ public class AjusteStockController {
             return;
         }
 
-        int nuevoStock;
         try {
-            nuevoStock = Integer.parseInt(nuevoStockField.getText());
+            int nuevoStock = Integer.parseInt(nuevoStockField.getText());
+
+            if (nuevoStock < 0) {
+                mostrarAlerta("Error de Validación", "El stock no puede ser un número negativo.");
+                return;
+            }
+
+            String motivo = motivoTxtArea.getText();
+            int stockAnterior = productoAjustar.getStock();
+
+            if (nuevoStock == stockAnterior) {
+                mostrarAlerta("Información", "El nuevo stock es igual al stock actual. No se realizó ningún ajuste.");
+                return;
+            }
+
+            int usuarioId = SessionManager.getInstance().getUsuarioLogueado().getId();
+            
+            boolean exito = productoDAO.ajustarStock(
+                    productoAjustar.getId(),
+                    nuevoStock,
+                    stockAnterior,
+                    motivo,
+                    usuarioId
+            );
+
+            if (exito) {
+                mostrarAlertaDeExito("Éxito", "El stock ha sido ajustado correctamente.");
+                cerrarVentana();
+            } else {
+                mostrarAlerta("Error", "No se pudo realizar el ajuste de stock. Revise la conexión a la base de datos.");
+            }
         } catch (NumberFormatException e) {
             mostrarAlerta("Error de Formato", "El nuevo stock debe ser un número válido.");
-            return;
         }
-
-        int stockActual = productoAjustar.getStock();
-        int cantidadAjustada = nuevoStock - stockActual;
-
-        productoAjustar.setStock(nuevoStock);
-        productoDAO.actualizarProducto(productoAjustar);
-
-        MovimientoStock movimiento = new MovimientoStock();
-        movimiento.setProductoId(productoAjustar.getId());
-        movimiento.setTipoMovimiento(cantidadAjustada >= 0 ? "AJUSTE_POSITIVO" : "AJUSTE_NEGATIVO");
-        movimiento.setCantidad(cantidadAjustada);
-        movimiento.setMotivo(motivoTxtArea.getText());
-        movimiento.setFechaMovimiento(LocalDateTime.now());
-
-
-        movimientoStockDAO.guardarMovimiento(movimiento); //
-
-        mostrarAlertaDeExito("Ajuste Exitoso", "El stock del producto se ha actualizado correctamente.");
-        Stage stage = (Stage) nuevoStockField.getScene().getWindow();
-        stage.close();
     }
 
     @FXML
     private void handleCancelarButton() {
-        Stage stage = (Stage) nuevoStockField.getScene().getWindow();
+        cerrarVentana();
+    }
+
+    private void cerrarVentana() {
+        Stage stage = (Stage) guardarButton.getScene().getWindow();
         stage.close();
     }
 
@@ -105,5 +113,3 @@ public class AjusteStockController {
         alert.showAndWait();
     }
 }
-
-

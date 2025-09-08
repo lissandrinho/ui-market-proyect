@@ -15,11 +15,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="487.0" prefWidth="558.0" style="-fx-background-color: #282c2d;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.NuevoUsuarioController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="513.0" prefWidth="558.0" style="-fx-background-color: #282c2d;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.FormularioUsuarioController">
    <top>
       <VBox alignment="CENTER_LEFT" prefHeight="74.0" prefWidth="560.0" spacing="5.0" BorderPane.alignment="CENTER_LEFT">
          <children>
-            <Label fx:id="labelFormularioCliente" text="Nuevo Usuario" textFill="#4e8767">
+            <Label fx:id="labelFormularioUsuario" text="Nuevo Usuario" textFill="#4e8767">
                <font>
                   <Font name="Franklin Gothic Medium" size="36.0" />
                </font>
@@ -51,13 +51,19 @@
                   <Font name="SansSerif Bold" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="fieldNombreUsuario" prefHeight="25.0" prefWidth="230.0" style="-fx-background-color: white;" stylesheets="@../../../../css/field.css" GridPane.columnIndex="1" />
+            <TextField fx:id="fieldNombreUsuario" prefHeight="25.0" prefWidth="230.0" style="-fx-background-color: white;" stylesheets="@../../../../css/field.css" GridPane.columnIndex="1">
+               <font>
+                  <Font name="SansSerif Regular" size="16.0" />
+               </font></TextField>
             <Label text="Nombre Completo:" textFill="WHITE" GridPane.rowIndex="1">
                <font>
                   <Font name="SansSerif Bold" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="fieldNombreCompleto" prefHeight="25.0" prefWidth="230.0" style="-fx-background-color: white;" stylesheets="@../../../../css/field.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="fieldNombreCompleto" prefHeight="25.0" prefWidth="230.0" style="-fx-background-color: white;" stylesheets="@../../../../css/field.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font name="SansSerif Regular" size="16.0" />
+               </font></TextField>
             <Label text="Contraseña:" textFill="WHITE" GridPane.rowIndex="2">
                <font>
                   <Font name="SansSerif Bold" size="16.0" />
@@ -73,13 +79,19 @@
                   <Font name="SansSerif Bold" size="16.0" />
                </font>
             </Label>
-            <ComboBox fx:id="comboBoxRol" prefHeight="25.0" prefWidth="230.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <ComboBox fx:id="comboBoxRol" prefHeight="35.0" prefWidth="230.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ComboBox>
-            <PasswordField fx:id="fieldContrasena" prefHeight="25.0" prefWidth="230.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <PasswordField fx:id="fieldConfirmarContrasena" prefHeight="25.0" prefWidth="230.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <PasswordField fx:id="fieldContrasena" prefHeight="25.0" prefWidth="230.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font size="16.0" />
+               </font></PasswordField>
+            <PasswordField fx:id="fieldConfirmarContrasena" prefHeight="25.0" prefWidth="230.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font name="SansSerif Regular" size="16.0" />
+               </font></PasswordField>
          </children>
       </GridPane>
    </center>

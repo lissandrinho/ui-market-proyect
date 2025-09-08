@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="786.0" prefWidth="1143.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.InicioController">
+   <children>
+      <VBox prefHeight="87.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Label fx:id="bienvenidoUsuarioLabel" text="Bienvenido de vuelta, [Nombre del Usuario]!" textFill="#4e8767">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="fechaLabel" text="Hoy es sábado, 7 de septiembre de 2025.">
+               <font>
+                  <Font name="SansSerif Regular" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox prefHeight="359.0" prefWidth="1267.0" spacing="15.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Label text="RESUMEN DEL DIA" textFill="#282c2d">
+               <font>
+                  <Font name="SansSerif Bold" size="24.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="317.0" prefWidth="1237.0" spacing="30.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <VBox alignment="CENTER_LEFT" prefHeight="302.0" prefWidth="550.0" spacing="10.0" style="-fx-background-color: #282c2d; -fx-background-radius: 10; -fx-border-color: 10;">
+                     <children>
+                        <Label text="ÚLTIMAS VENTAS REGISTRADAS: " textFill="WHITE">
+                           <font>
+                              <Font name="SansSerif Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Ultimas 10 ventas realizadas:" textFill="WHITE">
+                           <font>
+                              <Font name="SansSerif Regular" size="16.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="tableViewUltimasVentas" prefWidth="948.0" stylesheets="@../../../../css/styles.css">
+                          <columns>
+                            <TableColumn fx:id="horaColumn" prefWidth="75.0" text="Hora" />
+                            <TableColumn fx:id="clienteColumn" prefWidth="75.0" text="Cliente" />
+                              <TableColumn fx:id="totalColumn" prefWidth="75.0" text="Total" />
+                          </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+                  <VBox prefHeight="300.0" prefWidth="430.0" spacing="30.0">
+                     <children>
+                        <VBox alignment="CENTER_LEFT" fillWidth="false" prefHeight="133.0" prefWidth="355.0" spacing="20.0" style="-fx-background-color: #282c2d; -fx-background-radius: 10; -fx-border-color: 10;">
+                           <children>
+                              <Label text="Total ingresado hoy:" textFill="WHITE">
+                                 <font>
+                                    <Font name="SansSerif Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="totalIngresadoLabel" text="\$ 0,00" textFill="WHITE">
+                                 <font>
+                                    <Font name="SansSerif Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <effect>
+                              <DropShadow>
+                                 <color>
+                                    <Color opacity="0.30000001192092896" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </VBox>
+                        <VBox alignment="CENTER_LEFT" fillWidth="false" prefHeight="141.0" prefWidth="250.0" spacing="20.0" style="-fx-background-color: #282c2d; -fx-background-radius: 10; -fx-border-color: 10;">
+                           <children>
+                              <Label text="Productos Vendidos:" textFill="WHITE">
+                                 <font>
+                                    <Font name="SansSerif Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="productosVendidosLabel" text="\$ 0,00" textFill="WHITE">
+                                 <font>
+                                    <Font name="SansSerif Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <effect>
+                              <DropShadow>
+                                 <color>
+                                    <Color opacity="0.30000001192092896" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+      <HBox alignment="CENTER_LEFT" spacing="30.0" VBox.vgrow="ALWAYS">
+         <children>
+            <VBox alignment="CENTER_LEFT" prefHeight="300.0" prefWidth="550.0" spacing="10.0" style="-fx-background-color: #282c2d; -fx-background-radius: 10; -fx-border-color: 10;">
+               <children>
+                  <Label text="VENTAS SEMANALES" textFill="WHITE">
+                     <font>
+                        <Font name="SansSerif Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Ventas de los ultimos 7 dias:" textFill="WHITE">
+                     <font>
+                        <Font name="SansSerif Regular" size="16.0" />
+                     </font>
+                  </Label>
+                  <BarChart fx:id="barChartVentasSemales" stylesheets="@../../../../css/styles.css">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </BarChart>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" prefHeight="284.0" prefWidth="430.0" spacing="20.0" style="-fx-background-color: #282c2d; -fx-background-radius: 10; -fx-border-color: 10;">
+               <children>
+                  <Label text="Stock Bajo:" textFill="WHITE">
+                     <font>
+                        <Font name="SansSerif Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label text="Productos (10) con bajo Stock:" textFill="WHITE">
+                     <font>
+                        <Font name="SansSerif Regular" size="16.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="tableViewStockBajo" prefWidth="948.0" stylesheets="@../../../../css/styles.css">
+                     <columns>
+                        <TableColumn fx:id="productoColumn" prefWidth="75.0" text="Producto" />
+                        <TableColumn fx:id="stockColumn" prefWidth="75.0" text="Stock" />
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.30000001192092896" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </VBox>
+         </children>
+         <padding>
+            <Insets left="30.0" />
+         </padding>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" top="20.0" />
+   </padding>
+</VBox>

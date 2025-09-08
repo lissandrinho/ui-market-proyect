@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.ReportesController">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="755.0" prefWidth="1141.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.ReportesController">
    <children>
       <VBox>
          <children>
@@ -28,150 +28,227 @@
                </font>
             </Label>
          </children>
-         <padding>
-            <Insets left="20.0" top="20.0" />
-         </padding>
          <VBox.margin>
-            <Insets bottom="20.0" />
+            <Insets />
          </VBox.margin>
       </VBox>
-      <VBox alignment="CENTER_LEFT" prefWidth="1055.0">
+      <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="50.0">
          <children>
-            <Label text="Filtros:">
+            <Label text="Filtrar por fecha:">
                <font>
-                  <Font name="SansSerif Regular" size="24.0" />
+                  <Font name="SansSerif Bold" size="16.0" />
                </font>
-               <VBox.margin>
-                  <Insets bottom="10.0" left="30.0" />
-               </VBox.margin>
             </Label>
-            <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="30.0" prefWidth="1025.0" spacing="20.0">
-               <VBox.margin>
-                  <Insets bottom="5.0" left="30.0" />
-               </VBox.margin>
+            <VBox>
                <children>
                   <Label text="Desde:">
                      <font>
-                        <Font name="SansSerif Bold" size="18.0" />
+                        <Font name="SansSerif Bold" size="16.0" />
                      </font>
                   </Label>
-                  <DatePicker fx:id="dateTimeDesde" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #282c2d;" />
+                  <DatePicker fx:id="datePickerDesde" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #282c2d;">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </DatePicker>
+               </children>
+            </VBox>
+            <VBox>
+               <children>
                   <Label text="Hasta:">
                      <font>
-                        <Font name="SansSerif Bold" size="18.0" />
+                        <Font name="SansSerif Bold" size="16.0" />
                      </font>
                   </Label>
-                  <DatePicker fx:id="dateTimeHasta" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #282c2d;" />
-                  <Button fx:id="filtrarFechaButton" mnemonicParsing="false" onAction="#handleFiltrarFecha" prefHeight="35.0" prefWidth="114.0" style="-fx-background-color: #4e8767;" text="FILTRAR" textFill="WHITE">
+                  <DatePicker fx:id="datePickerhasta" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #282c2d;">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </DatePicker>
+               </children>
+            </VBox>
+            <Button fx:id="filtrarFechaButton" mnemonicParsing="false" onAction="#handleFiltrarFecha" prefHeight="35.0" prefWidth="114.0" style="-fx-background-color: #4e8767;" text="FILTRAR" textFill="WHITE">
+               <font>
+                  <Font name="SansSerif Bold" size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../icons/lupaBlanca.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="20.0" top="10.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="235.0" prefWidth="1101.0" spacing="20.0">
+         <children>
+            <VBox fillWidth="false" prefHeight="214.0" prefWidth="400.0">
+               <children>
+                  <Label text="TOP 10 Productos Más Vendidos">
                      <font>
-                        <Font name="SansSerif Bold" size="14.0" />
+                        <Font name="SansSerif Bold" size="16.0" />
                      </font>
-                     <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../icons/lupaBlanca.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
+                  </Label>
+                  <TableView fx:id="productoTableView" prefHeight="178.0" prefWidth="400.0" stylesheets="@../../../../css/styles.css">
+                    <columns>
+                      <TableColumn fx:id="ProductoMasVendidoColumn" prefWidth="75.0" text="Producto" />
+                      <TableColumn fx:id="cantidadMasVendidaColumn" prefWidth="75.0" text="Cantidad" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" top="10.0" />
+               </padding>
+            </VBox>
+            <VBox fillWidth="false" prefHeight="321.0" prefWidth="400.0">
+               <children>
+                  <Label text="TOP 10 Marcas Más Vendidas">
+                     <font>
+                        <Font name="SansSerif Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="marcasTableView" prefHeight="246.0" prefWidth="400.0" stylesheets="@../../../../css/styles.css">
+                     <columns>
+                        <TableColumn fx:id="marcaMasVendidaColumn" prefWidth="75.0" text="Marca" />
+                        <TableColumn fx:id="marcaCantidadMasVendidaColumn" prefWidth="75.0" text="Cantidad" />
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" top="10.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="251.0" spacing="10.0">
+               <children>
+                  <Button fx:id="detallesFacturaButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#handleDetallesFacturaClick" prefHeight="35.0" prefWidth="267.0" stylesheets="@../../../../css/styles.css" text="Detalles de Factura">
+                     <font>
+                        <Font name="SansSerif Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="historialCierreCajaButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#handlehistorialCierreCajaClick" prefHeight="35.0" prefWidth="267.0" stylesheets="@../../../../css/styles.css" text="Historial Cierre de Caja">
+                     <font>
+                        <Font name="SansSerif Bold" size="16.0" />
+                     </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
                </children>
-            </HBox>
-            <TableView fx:id="tableViewReportes" prefHeight="300.0" prefWidth="995.0" stylesheets="@../../../../css/styles.css" VBox.vgrow="ALWAYS">
-              <columns>
-                <TableColumn fx:id="numeroFacturaColumn" prefWidth="75.0" text="Factura Nº" />
-                <TableColumn fx:id="clienteColumn" prefWidth="75.0" text="Cliente" />
-                  <TableColumn fx:id="productoColumn" prefWidth="75.0" text="Producto" />
-                  <TableColumn fx:id="cantidadColumn" prefWidth="75.0" text="Cantidad" />
-                  <TableColumn fx:id="precioUnitarioColumn" prefWidth="75.0" text="P. Unitario" />
-                  <TableColumn fx:id="subtotalColumn" prefWidth="75.0" text="Subtotal" />
-              </columns>
-               <VBox.margin>
-                  <Insets bottom="10.0" left="30.0" right="30.0" top="20.0" />
-               </VBox.margin>
-               <columnResizePolicy>
-                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-               </columnResizePolicy>
-            </TableView>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
          </children>
-         <VBox.margin>
-            <Insets left="10.0" right="40.0" />
-         </VBox.margin>
-      </VBox>
-      <VBox prefHeight="200.0" prefWidth="100.0">
+      </HBox>
+      <VBox prefHeight="403.0" prefWidth="1101.0" spacing="5.0">
          <children>
-            <Label text="Resumen del Periodo:">
+            <Label text="DETALLE COMPLETO DE VENTAS:">
                <font>
-                  <Font name="SansSerif Regular" size="24.0" />
+                  <Font name="SansSerif Bold" size="16.0" />
                </font>
-               <VBox.margin>
-                  <Insets bottom="10.0" left="30.0" />
-               </VBox.margin>
             </Label>
-            <HBox alignment="CENTER_LEFT" prefHeight="107.0" prefWidth="1065.0" spacing="100.0">
+            <HBox fillHeight="false" spacing="10.0">
                <children>
-                  <VBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="215.0" spacing="20.0" style="-fx-background-color: #282c2d; -fx-background-radius: 10; -fx-border-radius: 10;">
+                  <TableView fx:id="ventasTableView" prefHeight="330.0" prefWidth="794.0" stylesheets="@../../../../css/styles.css">
+                     <columns>
+                        <TableColumn fx:id="facturaNumeroColumn" prefWidth="120.0" text="Factura Nº" />
+                        <TableColumn fx:id="fechaColumn" prefWidth="140.0" text="Fecha" />
+                        <TableColumn fx:id="clienteColumn" prefWidth="165.0" text="Cliente" />
+                        <TableColumn fx:id="totalItemsColumn" prefWidth="192.0" text="Total Items" />
+                        <TableColumn fx:id="totalVentaColumn" prefWidth="148.0" text="Total Venta" />
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+                  <VBox alignment="CENTER_LEFT" prefHeight="396.0" prefWidth="286.0" spacing="15.0">
                      <children>
-                        <Label text="Productos Vendidos:" textFill="WHITE">
+                        <Label text="RESUMEN DEL PERÍODO:">
                            <font>
-                              <Font name="SansSerif Bold" size="18.0" />
+                              <Font name="SansSerif Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="productosVendidosLabel" text="256" textFill="WHITE">
-                           <font>
-                              <Font name="SansSerif Bold" size="24.0" />
-                           </font>
-                        </Label>
+                        <VBox prefHeight="86.0" prefWidth="286.0" spacing="15.0" style="-fx-background-color: #282c2d; -fx-background-radius: 10;">
+                           <children>
+                              <Label text="Cantidad de Ventas Realizadas:" textFill="WHITE">
+                                 <font>
+                                    <Font name="SansSerif Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="ventasRealizadasLabel" textFill="WHITE">
+                                 <font>
+                                    <Font name="SansSerif Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                        <VBox prefHeight="86.0" prefWidth="286.0" spacing="15.0" style="-fx-background-color: #282c2d; -fx-background-radius: 10;">
+                           <children>
+                              <Label text="Cantidad Productos Vendidos" textFill="WHITE">
+                                 <font>
+                                    <Font name="SansSerif Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="cantidadVendidosLabel" textFill="WHITE">
+                                 <font>
+                                    <Font name="SansSerif Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                        <VBox prefHeight="86.0" prefWidth="286.0" spacing="15.0" style="-fx-background-color: #282c2d; -fx-background-radius: 10;">
+                           <children>
+                              <Label text="Ingresos Totales:" textFill="WHITE">
+                                 <font>
+                                    <Font name="SansSerif Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="ingresosTotalesLabel" textFill="WHITE">
+                                 <font>
+                                    <Font name="SansSerif Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
                      </children>
-                     <padding>
-                        <Insets left="15.0" right="10.0" />
-                     </padding>
-                  </VBox>
-                  <VBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="216.0" spacing="20.0" style="-fx-background-color: #282c2d; -fx-background-radius: 10; -fx-border-radius: 10;">
-                     <children>
-                        <Label text="Ventas Realizadas:" textFill="WHITE">
-                           <font>
-                              <Font name="SansSerif Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="ventasRealizadasLabel" text="256" textFill="WHITE">
-                           <font>
-                              <Font name="SansSerif Bold" size="24.0" />
-                           </font>
-                        </Label>
-                     </children>
-                     <padding>
-                        <Insets left="15.0" right="10.0" />
-                     </padding>
-                  </VBox>
-                  <VBox alignment="CENTER_LEFT" layoutX="637.0" layoutY="10.0" prefHeight="80.0" prefWidth="215.0" spacing="20.0" style="-fx-background-color: #282c2d; -fx-background-radius: 10; -fx-border-radius: 10;">
-                     <children>
-                        <Label text="Ingresos Totales:" textFill="WHITE">
-                           <font>
-                              <Font name="SansSerif Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="IngresosTotalesLabel" text="256" textFill="WHITE">
-                           <font>
-                              <Font name="SansSerif Bold" size="24.0" />
-                           </font>
-                        </Label>
-                     </children>
-                     <padding>
-                        <Insets left="15.0" right="10.0" />
-                     </padding>
                   </VBox>
                </children>
-               <VBox.margin>
-                  <Insets left="30.0" />
-               </VBox.margin>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
             </HBox>
          </children>
-         <VBox.margin>
-            <Insets left="10.0" />
-         </VBox.margin>
+         <padding>
+            <Insets bottom="5.0" top="10.0" />
+         </padding>
       </VBox>
    </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
 </VBox>

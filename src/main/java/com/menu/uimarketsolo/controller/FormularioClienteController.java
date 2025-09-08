@@ -14,6 +14,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class FormularioClienteController {
 
@@ -38,10 +39,10 @@ public class FormularioClienteController {
     }
 
 
-    public void initData(Cliente cliente, String titulo) {
+    public void initData(Cliente cliente) {
         this.clienteAEditar = cliente;
-        this.labelFormularioCliente.setText(titulo);
         if (cliente != null) {
+            this.labelFormularioCliente.setText("Editar Cliente");
 
             fieldCedula.setText(cliente.getCedula());
             fieldNombre.setText(cliente.getNombre());
@@ -50,6 +51,8 @@ public class FormularioClienteController {
             fieldEmail.setText(cliente.getEmail());
 
             fieldCedula.setEditable(false);
+        } else {
+            this.labelFormularioCliente.setText("Nuevo Cliente");
         }
     }
 
@@ -66,26 +69,36 @@ public class FormularioClienteController {
             return;
         }
 
-        if (clienteAEditar == null) {
-            // MODO AGREGAR
-            Cliente nuevoCliente = new Cliente();
-            nuevoCliente.setCedula(cedula);
-            nuevoCliente.setNombre(nombre);
-            nuevoCliente.setApellido(apellido);
-            nuevoCliente.setTelefono(telefono);
-            nuevoCliente.setEmail(email);
-            clienteDAO.guardarCliente(nuevoCliente);
-            mostrarAlertaDeExito("Cliente Guardado", "El nuevo cliente se ha registrado correctamente.");
-        } else {
-            // MODO EDICIÓN
-            clienteAEditar.setNombre(nombre);
-            clienteAEditar.setApellido(apellido);
-            clienteAEditar.setTelefono(telefono);
-            clienteAEditar.setEmail(email);
-            clienteDAO.actualizarCliente(clienteAEditar);
-            mostrarAlertaDeExito("Cliente Actualizado", "Los datos se han actualizado correctamente.");
+        try {
+            if (clienteAEditar == null) {
+                // MODO AGREGAR
+                if (clienteDAO.existeCedula(cedula)) {
+                    mostrarAlerta("Error de Duplicado", "La cédula '" + cedula + "' ya está registrada para otro cliente.");
+                    return;
+                }
+
+                Cliente nuevoCliente = new Cliente();
+                nuevoCliente.setCedula(cedula);
+                nuevoCliente.setNombre(nombre);
+                nuevoCliente.setApellido(apellido);
+                nuevoCliente.setTelefono(telefono);
+                nuevoCliente.setEmail(email);
+                clienteDAO.guardarCliente(nuevoCliente);
+                mostrarAlertaDeExito("Cliente Guardado", "El nuevo cliente se ha registrado correctamente.");
+            } else {
+                // MODO EDICIÓN
+                clienteAEditar.setNombre(nombre);
+                clienteAEditar.setApellido(apellido);
+                clienteAEditar.setTelefono(telefono);
+                clienteAEditar.setEmail(email);
+                clienteDAO.actualizarCliente(clienteAEditar);
+                mostrarAlertaDeExito("Cliente Actualizado", "Los datos se han actualizado correctamente.");
+            }
+            cerrarVentana();
+        } catch (SQLException e) {
+            mostrarAlerta("Error de Base de Datos", "No se pudo guardar el cliente. Por favor, revise la conexión o los datos ingresados.");
+            e.printStackTrace();
         }
-        cerrarVentana();
     }
 
     @FXML

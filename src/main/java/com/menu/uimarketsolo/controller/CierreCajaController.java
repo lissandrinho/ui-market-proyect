@@ -1,12 +1,12 @@
 package com.menu.uimarketsolo.controller;
 
+import com.menu.uimarketsolo.SessionManager;
 import com.menu.uimarketsolo.dao.CierreCajaDAO;
 import com.menu.uimarketsolo.model.CierreCaja;
+import com.menu.uimarketsolo.model.Usuario;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -24,11 +24,13 @@ public class CierreCajaController {
     @FXML private TextField fieldTotalTarjeta;
     @FXML private Label diferenciaLabel;
     @FXML private Button btnConfirmarCierre;
+    @FXML private DatePicker datePickerFecha;
+    @FXML private VBox vboxFecha;
 
     private CierreCajaDAO cierreCajaDAO;
     private BigDecimal totalSistemaEfectivo = BigDecimal.ZERO;
     private BigDecimal totalSistemaTarjeta = BigDecimal.ZERO;
-
+    private Usuario usuarioLogueado;
 
     @FXML
     public void initialize() {
@@ -37,24 +39,49 @@ public class CierreCajaController {
         fechaDiaLabel.setText(LocalDate.now().toString());
         cargarTotalesDelSistema();
 
+        this.usuarioLogueado = SessionManager.getInstance().getUsuarioLogueado();
+        if (this.usuarioLogueado != null){
+            configurarVistaPorRol();
+        }
+
         fieldTotalEfectivo.textProperty().addListener((o, ov, nv) -> calcularDiferenciaTotal());
         fieldTotalTarjeta.textProperty().addListener((o, ov, nv) -> calcularDiferenciaTotal());
     }
 
-    private void cargarTotalesDelSistema(){
+    public void initData(Usuario usuario){
+        this.usuarioLogueado = usuario;
+        configurarVistaPorRol();
+    }
 
-        Map<String, BigDecimal> totalesHoy = cierreCajaDAO.getTotalesDelDia(LocalDate.now());
+    private void configurarVistaPorRol() {
+        boolean esAdmin = usuarioLogueado.getRol().equalsIgnoreCase("admin");
+
+        vboxFecha.setVisible(esAdmin);
+        vboxFecha.setManaged(esAdmin);
+        if (esAdmin) {
+            datePickerFecha.setValue(LocalDate.now());
+            datePickerFecha.valueProperty().addListener((obs, oldDate, newDate) ->
+                    cargarTotalesDelSistema());
+        }
+        cargarTotalesDelSistema();
+    }
+
+    private void cargarTotalesDelSistema() {
+        LocalDate fecha = datePickerFecha != null && datePickerFecha.getValue() != null
+                ? datePickerFecha.getValue()
+                : LocalDate.now();
+
+        Map<String, BigDecimal> totalesHoy = cierreCajaDAO.getTotalesDelDia(fecha);
+
+        // Obtenemos directamente los valores que devuelve el DAO
         totalSistemaEfectivo = totalesHoy.getOrDefault("Efectivo", BigDecimal.ZERO);
+        totalSistemaTarjeta = totalesHoy.getOrDefault("Tarjeta", BigDecimal.ZERO);
 
-        BigDecimal totalDebito = totalesHoy.getOrDefault("Tarjeta de Débito", BigDecimal.ZERO);
-        BigDecimal totalCredito = totalesHoy.getOrDefault("Tarjeta de Crédito", BigDecimal.ZERO);
-        totalSistemaTarjeta = totalDebito.add(totalCredito);
-
+        // Actualizamos los labels
         totalEfectivoLabel.setText(String.format("$ %.2f", totalSistemaEfectivo));
         totalTarjetaLabel.setText(String.format("$ %.2f", totalSistemaTarjeta));
 
         calcularDiferenciaTotal();
-
     }
 
     private void calcularDiferenciaTotal() {
@@ -90,10 +117,28 @@ public class CierreCajaController {
 
     @FXML
     private void handleConfirmarCierre() {
-       BigDecimal contadoEfectivo = new BigDecimal(fieldTotalEfectivo.getText());
-         BigDecimal contadoTarjeta = new BigDecimal(fieldTotalTarjeta.getText());
+       // Se inicializan las variables con un valor seguro (cero).
+       BigDecimal contadoEfectivo = BigDecimal.ZERO;
+       BigDecimal contadoTarjeta = BigDecimal.ZERO;
+
+        try {
+
+            String textoEfectivo = fieldTotalEfectivo.getText();
+            if (!textoEfectivo.isEmpty()) {
+                contadoEfectivo = new BigDecimal(textoEfectivo);
+            }
+
+            String textoTarjeta = fieldTotalTarjeta.getText();
+            if (!textoTarjeta.isEmpty()) {
+                contadoTarjeta = new BigDecimal(textoTarjeta);
+            }
+        } catch (NumberFormatException e) {
+            mostrarAlerta("Error de Formato", "Los montos ingresados deben ser números válidos.");
+            return;
+        }
 
         CierreCaja cierreCaja = new  CierreCaja();
+        cierreCaja.setUsuarioId(SessionManager.getInstance().getUsuarioLogueado().getId());
         cierreCaja.setFechaCierre(LocalDateTime.now());
         cierreCaja.setTotalSistemaEfectivo(totalSistemaEfectivo);
         cierreCaja.setTotalContadoEfectivo(contadoEfectivo);
@@ -101,7 +146,6 @@ public class CierreCajaController {
         cierreCaja.setTotalSistemaTarjeta(totalSistemaTarjeta);
         cierreCaja.setTotalContadoTarjeta(contadoTarjeta);
         cierreCaja.setDiferenciaTarjeta(contadoTarjeta.subtract(totalSistemaTarjeta));
-        //cierreCaja.setUsuarioId();
 
         cierreCajaDAO.guardarArqueo(cierreCaja);
 
@@ -119,5 +163,13 @@ public class CierreCajaController {
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
-}
+    private void mostrarAlerta(String titulo, String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
 
+
+}

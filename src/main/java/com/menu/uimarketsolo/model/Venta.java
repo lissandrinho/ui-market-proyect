@@ -9,7 +9,8 @@ public class Venta {
     private LocalDateTime fechaVenta;
     private BigDecimal ventaTotal;
     private String clienteCedula;
-
+    private int usuarioId;
+    private String nombreCliente; // Nuevo campo para el nombre
     public Venta(){
 
     }
@@ -52,6 +53,20 @@ public class Venta {
     public void setClienteCedula(String clienteCedula) {
         this.clienteCedula = clienteCedula;
     }
+    public int getUsuarioId() {
+        return usuarioId;
+    }
+    public void setUsuarioId(int usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+
+    public String getNombreCliente() {
+        return nombreCliente;
+    }
+
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
+    }
 
     @Override
     public String toString() {
@@ -76,7 +91,3 @@ public class Venta {
         return Objects.hash(id);
     }
 }
-
-
-
-

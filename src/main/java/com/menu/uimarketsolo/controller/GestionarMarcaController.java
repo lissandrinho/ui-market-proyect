@@ -45,6 +45,16 @@ public class GestionarMarcaController {
                     if (newValue != null) {
                         fieldMarca.setText(newValue.getNombre());
                         btnEliminarMarca.setDisable(false); // Activa el botón de eliminar
+
+
+                        // Buscar y seleccionar el proveedor asignado a esta marca
+                        Proveedor proveedorAsignado =
+                                proveedorDAO.getProveedorPorMarca(newValue.getId());
+                        if (proveedorAsignado != null) {
+                            comboBoxProveedorAsignado.setValue(proveedorAsignado);
+                        } else {
+                            comboBoxProveedorAsignado.getSelectionModel().clearSelection();
+                        }
                     } else {
                         btnEliminarMarca.setDisable(true); // Desactiva si no hay selección
                     }
@@ -68,16 +78,22 @@ public class GestionarMarcaController {
 
     @FXML
     private void handleGuardarMarca() {
-        String nombreMarca = fieldMarca.getText();
+        String nombreMarca = fieldMarca.getText().trim();
         Proveedor proveedorSeleccionado = comboBoxProveedorAsignado.getSelectionModel().getSelectedItem();
-        if (nombreMarca.trim().isEmpty() || proveedorSeleccionado == null) {
+        if (nombreMarca.isEmpty() || proveedorSeleccionado == null) {
             mostrarAlerta("Error", "Debes ingresar un nombre para la marca y seleccionar un proveedor.");
             return;
         }
 
         Marca marcaSeleccionada = listVIewMarcas.getSelectionModel().getSelectedItem();
 
+
         if (marcaSeleccionada == null) {
+            // MODO NUEVO: Validar si el nombre ya existe.
+            if (marcaDAO.existeMarcaPorNombre(nombreMarca)) {
+                mostrarAlerta("Error de Duplicado", "Ya existe una marca con el nombre '" + nombreMarca + "'.");
+                return;
+            }
             Marca nuevaMarca = new Marca();
             nuevaMarca.setNombre(nombreMarca);
 
@@ -87,8 +103,15 @@ public class GestionarMarcaController {
                 mostrarAlertaDeExito("Éxito", "Nueva marca guardada y asignada correctamente.");
             }
         } else {
+            // MODO EDICIÓN: Validar solo si el nombre ha cambiado y el nuevo nombre ya existe.
+            if (!nombreMarca.equalsIgnoreCase(marcaSeleccionada.getNombre()) && marcaDAO.existeMarcaPorNombre(nombreMarca)) {
+                mostrarAlerta("Error de Duplicado", "Ya existe otra marca con el nombre '" + nombreMarca + "'.");
+                return;
+            }
             marcaSeleccionada.setNombre(nombreMarca);
             marcaDAO.actualizarMarca(marcaSeleccionada);
+
+            proveedorMarcaDAO.actualizarAsignacionProveedor(proveedorSeleccionado.getId(), marcaSeleccionada.getId());
             mostrarAlertaDeExito("Exito", "Marca actualizada correctamente");
         }
 
@@ -116,6 +139,7 @@ public class GestionarMarcaController {
 
         Optional<ButtonType> resultado = alertaConfirmacion.showAndWait();
         if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
+            proveedorMarcaDAO.eliminarAsignacionPorMarca(marcaSeleccionada.getId());
             marcaDAO.eliminarMarca(marcaSeleccionada.getId());
             cargarMarcas();
             limpiarFormulario();
@@ -125,6 +149,7 @@ public class GestionarMarcaController {
     private void limpiarFormulario() {
         listVIewMarcas.getSelectionModel().clearSelection();
         fieldMarca.clear();
+        comboBoxProveedorAsignado.getSelectionModel().clearSelection();
         btnEliminarMarca.setDisable(true);
     }
 

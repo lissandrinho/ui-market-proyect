@@ -32,7 +32,7 @@ public class ClienteDAO {
         return clientes;
     }
 
-    public void guardarCliente(Cliente cliente) {
+    public void guardarCliente(Cliente cliente) throws SQLException {
         String sql = "INSERT INTO clientes(cedula, nombre_cliente, apellido_cliente, telefono_cliente, email_cliente) " +
                 "VALUES(?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -43,12 +43,10 @@ public class ClienteDAO {
             pstmt.setString(4, cliente.getTelefono());
             pstmt.setString(5, cliente.getEmail());
             pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
-    public void actualizarCliente(Cliente cliente) {
+    public void actualizarCliente(Cliente cliente) throws SQLException {
         String sql = "UPDATE clientes SET nombre_cliente = ?, apellido_cliente = ?, telefono_cliente = ?, email_cliente = ? " +
                 "WHERE cedula = ?";
 
@@ -63,11 +61,8 @@ public class ClienteDAO {
 
             pstmt.executeUpdate();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
-
 
     public void eliminarCliente(String cedula) {
         String sql = "UPDATE clientes SET is_activo = false WHERE cedula = ?";
@@ -124,7 +119,8 @@ public class ClienteDAO {
                     cliente.setCedula(rs.getString("cedula"));
                     cliente.setNombre(rs.getString("nombre_cliente"));
                     cliente.setApellido(rs.getString("apellido_cliente"));
-                    // ... (el resto de los setters)
+                    cliente.setTelefono(rs.getString("telefono_cliente"));
+                    cliente.setEmail(rs.getString("email_cliente"));
                     clientes.add(cliente);
                 }
             }
@@ -132,5 +128,22 @@ public class ClienteDAO {
             e.printStackTrace();
         }
         return clientes;
+    }
+
+    public boolean existeCedula(String cedula) {
+        String sql = "SELECT COUNT(*) FROM clientes WHERE cedula = ? AND is_activo = true";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, cedula);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

@@ -64,4 +64,37 @@
     -fx-background-color: #3a6b52; /* Un verde un poco más oscuro */
 }
 
+/* --- Estilo para BarChart --- */
+.chart {
+    -fx-padding: 10px;
+}
+
+/* Fondo del área del gráfico (lo hacemos transparente) */
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+/* Color de las barras */
+.chart-bar {
+    -fx-bar-fill: #4e8767; /* Tu color verde principal */
+}
+.chart-bar:hover {
+    -fx-bar-fill: #3a6b52; /* Verde más oscuro al pasar el mouse */
+}
+
+/* Estilo de los ejes (líneas y números) */
+.axis {
+    -fx-tick-label-fill: white; /* Color del texto de los ejes (días, montos) */
+    -fx-stroke: #555555; /* Color de la línea de los ejes */
+}
+
+/* Título del gráfico */
+.chart-title {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+}
+
+.button{
+    -fx-background-color: transparent;
+}
 

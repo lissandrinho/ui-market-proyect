@@ -14,14 +14,14 @@
 
 <BorderPane fx:id="mainPane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.MainController">
    <left>
-      <VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: #282c2d;" BorderPane.alignment="TOP_CENTER">
+      <VBox alignment="CENTER" spacing="15.0" style="-fx-background-color: #282c2d;" BorderPane.alignment="TOP_CENTER">
          <children>
-            <ImageView fitHeight="208.0" fitWidth="176.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+            <ImageView fitHeight="185.0" fitWidth="233.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
                <image>
                   <Image url="@../../../../icons/logoUI.png" />
                </image>
             </ImageView>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" maxHeight="60.0" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="INICIO" textFill="WHITE">
+            <Button fx:id="btnInicio" alignment="BASELINE_LEFT" graphicTextGap="10.0" maxHeight="60.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleInicioClick" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="Inicio" textFill="WHITE">
                <font>
                   <Font name="Franklin Gothic Medium" size="18.0" />
                </font>
@@ -39,7 +39,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" maxHeight="60.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleVentasClick" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="NUEVA VENTA" textFill="WHITE">
+            <Button fx:id="btnVentas" alignment="BASELINE_LEFT" graphicTextGap="10.0" maxHeight="60.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleVentasClick" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="Nueva Venta" textFill="WHITE">
                <font>
                   <Font name="Franklin Gothic Medium" size="18.0" />
                </font>
@@ -57,7 +57,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" maxHeight="60.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleProductosClick" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="STOCK" textFill="WHITE">
+            <Button fx:id="btnStock" alignment="BASELINE_LEFT" graphicTextGap="10.0" maxHeight="60.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleProductosClick" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="Stock" textFill="WHITE">
                <font>
                   <Font name="Franklin Gothic Medium" size="18.0" />
                </font>
@@ -75,7 +75,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" maxHeight="60.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleClientesClick" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="CLIENTES" textFill="WHITE">
+            <Button fx:id="btnClientes" alignment="BASELINE_LEFT" graphicTextGap="10.0" maxHeight="60.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleClientesClick" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="Clientes" textFill="WHITE">
                <font>
                   <Font name="Franklin Gothic Medium" size="18.0" />
                </font>
@@ -93,7 +93,25 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" maxHeight="60.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleProveedoresClick" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="PROVEEDORES" textFill="WHITE">
+            <Button fx:id="btnCierreCaja" alignment="BASELINE_LEFT" graphicTextGap="10.0" maxHeight="80.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleCierreCajaClick" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="Cierre Caja" textFill="WHITE">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../icons/cierrecaja.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnProveedores" alignment="BASELINE_LEFT" graphicTextGap="10.0" maxHeight="60.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleProveedoresClick" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="Proveedores" textFill="WHITE">
                <font>
                   <Font name="Franklin Gothic Medium" size="18.0" />
                </font>
@@ -111,7 +129,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" maxHeight="80.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleReportesClick" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="REPORTES" textFill="WHITE">
+            <Button fx:id="btnReportes" alignment="BASELINE_LEFT" graphicTextGap="10.0" maxHeight="80.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleReportesClick" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="Reportes" textFill="WHITE">
                <font>
                   <Font name="Franklin Gothic Medium" size="18.0" />
                </font>
@@ -133,7 +151,7 @@
                </VBox.margin>
             </Button>
             <Region prefHeight="70.0" prefWidth="250.0" VBox.vgrow="ALWAYS" />
-            <Button fx:id="usuarioButtton" alignment="BASELINE_LEFT" graphicTextGap="15.0" maxHeight="60.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleUsuarioClick" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="USUARIO" textFill="WHITE">
+            <Button fx:id="btnUsuarios" alignment="BASELINE_LEFT" graphicTextGap="15.0" maxHeight="60.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleUsuarioClick" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="Usuario" textFill="WHITE">
                <font>
                   <Font name="Franklin Gothic Medium" size="18.0" />
                </font>

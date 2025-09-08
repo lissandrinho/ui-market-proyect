@@ -10,6 +10,7 @@ public class MovimientoStock {
     private String tipoMovimiento;
     private int cantidad;
     private String motivo;
+    private int UsuarioId;
 
     public MovimientoStock(){
 
@@ -59,6 +60,12 @@ public class MovimientoStock {
     }
     public void setMotivo(String motivo){
         this.motivo = motivo;
+    }
+    public int getUsuarioId() {
+        return UsuarioId;
+    }
+    public void setUsuarioId(int usuarioId) {
+        this.UsuarioId = usuarioId;
     }
 
     @Override

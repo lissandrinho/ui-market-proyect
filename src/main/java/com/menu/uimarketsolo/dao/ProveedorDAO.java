@@ -111,8 +111,7 @@ public class ProveedorDAO {
         return proveedores;
     }
 
-    public List<Proveedor> getProveedoresPorMarca(int marcaId) {
-        List<Proveedor> proveedores = new ArrayList<>();
+    public Proveedor getProveedorPorMarca(int marcaId) {
         String sql = "SELECT p.* FROM proveedores p " +
                 "JOIN proveedores_marcas pm ON p.id = pm.proveedor_id " +
                 "WHERE pm.marca_id = ?";
@@ -122,18 +121,20 @@ public class ProveedorDAO {
 
             pstmt.setInt(1, marcaId);
             try (ResultSet rs = pstmt.executeQuery()) {
-                while (rs.next()) {
+                if (rs.next()) {
                     Proveedor proveedor = new Proveedor();
                     proveedor.setId(rs.getInt("id"));
                     proveedor.setNombre(rs.getString("nombre"));
-                    proveedores.add(proveedor);
+                    proveedor.setContacto(rs.getString("contacto"));
+                    proveedor.setTelefono(rs.getString("telefono"));
+                    proveedor.setEmail(rs.getString("email"));
+                    proveedor.setDireccion(rs.getString("direccion"));
+                    return proveedor;
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return proveedores;
+        return null;
     }
-
-
 }

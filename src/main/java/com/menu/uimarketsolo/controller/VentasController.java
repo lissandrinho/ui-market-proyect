@@ -1,5 +1,6 @@
 package com.menu.uimarketsolo.controller;
 
+import com.menu.uimarketsolo.SessionManager;
 import com.menu.uimarketsolo.dao.ClienteDAO;
 import com.menu.uimarketsolo.dao.ProductoDAO;
 import com.menu.uimarketsolo.dao.VentaDAO;
@@ -143,12 +144,19 @@ public class VentasController {
         fieldDescuento.textProperty().addListener((o, oldVal, newVal) -> actualizarTotales());
         fieldMontoRecibido.textProperty().addListener((o, oldVal, newVal) -> actualizarTotales());
 
+        //Limpiar la selección si el campo de búsqueda de producto se vacía
+        fieldBuscarProducto.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == null || newValue.isEmpty()) {
+                productoSeleccionadoParaVenta = null;
+                imageViewProductoPreview.setImage(null);
+            }
+        });
+
 
     }
 
-    // Dentro de la clase VentasController.java
 
-    // Dentro de la clase VentasController.java
+
 
     private void configurarAutocompletado() {
 
@@ -171,9 +179,11 @@ public class VentasController {
         });
 
 
-        List<Producto> todosLosProductos = productoDAO.getAllProductos();
-        TextFields.bindAutoCompletion(fieldBuscarProducto, todosLosProductos)
-                .setOnAutoCompleted(event -> {
+        TextFields.bindAutoCompletion(fieldBuscarProducto, suggestionRequest -> {
+            String textoIngresado = suggestionRequest.getUserText();
+
+            return productoDAO.buscarProducto(textoIngresado);
+        }).setOnAutoCompleted(event -> {
 
 
                     productoSeleccionadoParaVenta = event.getCompletion();
@@ -222,7 +232,7 @@ public class VentasController {
                 }
             };
         };
-        // --- CORRECCIÓN AQUÍ ---
+
         colAcciones.setCellFactory(cellFactory);
     }
 
@@ -251,6 +261,14 @@ public class VentasController {
         boolean productoYaEnLista = false;
         for (ProductoVenta item : listaVenta) {
             if (item.getProducto().getId() == productoSeleccionadoParaVenta.getId()) {
+
+                // Se valida que la cantidad existente + la nueva no supere el stock total.
+                int nuevaCantidadTotal = item.getCantidad() + cantidad;
+                if (nuevaCantidadTotal > productoSeleccionadoParaVenta.getStock()) {
+                    mostrarAlerta("Error de Stock", "No puedes agregar " + cantidad + " unidades. " +
+                            "El stock total es " + productoSeleccionadoParaVenta.getStock() + " y ya tienes " + item.getCantidad() + " en el carrito.");
+                    return;
+                }
                 // Si el producto ya está, actualiza la cantidad
                 item.setCantidad(item.getCantidad() + cantidad);
                 productosTable.refresh();
@@ -268,6 +286,7 @@ public class VentasController {
 
         fieldBuscarProducto.clear();
         productoSeleccionadoParaVenta = null;
+        imageViewProductoPreview.setImage(null);
         spinnerCantidad.getValueFactory().setValue(1);
         actualizarTotales();
     }
@@ -336,9 +355,12 @@ public class VentasController {
         double totalFinal = (subtotal - descuento) * (1 + TASA_IVA);
 
         Venta nuevaVenta = new Venta();
+        nuevaVenta.setUsuarioId(SessionManager.getInstance().getUsuarioLogueado().getId());
         nuevaVenta.setClienteCedula(clienteSeleccionado.getCedula());
-        nuevaVenta.setVentaTotal(new BigDecimal(labelTotal.getText().replace("$", "").trim()));
+        nuevaVenta.setVentaTotal(BigDecimal.valueOf(totalFinal));
         nuevaVenta.setFechaVenta(LocalDateTime.now());
+
+        nuevaVenta.setUsuarioId(SessionManager.getInstance().getUsuarioLogueado().getId());
 
         boolean exito = ventaDAO.guardarVenta(nuevaVenta, listaVenta, comboBoxMetodoPago.getValue());
 
@@ -367,41 +389,29 @@ public class VentasController {
 
     @FXML
     private void handleMostrarTodosLosClientes() {
-        clienteSeleccionado = clienteDAO.getClientePorCedula("00000000");
-
+        
         fieldBuscarCliente.setEditable(true);
         fieldBuscarCliente.clear();
         fieldBuscarCliente.requestFocus();
     }
 
-    @FXML
-    private void handleAbrirCierreCaja(){
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/menu/uimarketsolo/view" +
-                    "/CierreCajaView.fxml"));
-            Parent root = loader.load();
-
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle("Cierre de Caja");
-            dialogStage.initOwner(fieldBuscarCliente.getScene().getWindow());
-
-            dialogStage.setScene((new Scene(root)));
-            dialogStage.showAndWait();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
 
     private void limpiarFormularioVenta() {
         listaVenta.clear();
         fieldBuscarProducto.clear();
         fieldDescuento.clear();
         fieldMontoRecibido.clear();
+        imageViewProductoPreview.setImage(null);
         spinnerCantidad.getValueFactory().setValue(1);
 
-        // Restablecer cliente por defecto
+
         this.clienteSeleccionado = clienteDAO.getClientePorCedula("00000000");
         fieldBuscarCliente.setText(this.clienteSeleccionado != null ? this.clienteSeleccionado.toString() : "");
+
+        // Actualizar el número de factura para la siguiente venta
+        int ultimoId = ventaDAO.getUltimoIdVenta();
+        int proximaFactura = ultimoId + 1;
+        labelNumeroFactura.setText(String.format("%08d", proximaFactura));
 
         actualizarTotales();
     }

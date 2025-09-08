@@ -1,7 +1,9 @@
 package com.menu.uimarketsolo.controller;
+import com.menu.uimarketsolo.SessionManager;
 import com.menu.uimarketsolo.dao.ProductoDAO;
 import com.menu.uimarketsolo.model.Producto;
 
+import com.menu.uimarketsolo.model.Usuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,13 +16,16 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import javafx.util.Callback;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 public class ProductosController {
 
@@ -65,9 +70,13 @@ public class ProductosController {
     private TextField buscarProductoField;
     @FXML
     private Label marcaLabel;
+    @FXML
+    private Label categoriaLabel;
 
     @FXML
     private Button ajustarStockButton;
+    @FXML
+    private HBox hboxBotonesAdmin;
 
 
     @FXML
@@ -78,6 +87,18 @@ public class ProductosController {
         nombreColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         precioColumn.setCellValueFactory(new PropertyValueFactory<>("precioVenta"));
         stockColumn.setCellValueFactory(new PropertyValueFactory<>("stock"));
+
+
+        Usuario usuarioLogueado = SessionManager.getInstance().getUsuarioLogueado();
+        if (usuarioLogueado != null && !usuarioLogueado.getRol().equalsIgnoreCase("admin")){
+            hboxBotonesAdmin.setVisible(false);
+            hboxBotonesAdmin.setManaged(false);
+
+            accionesColumn.setVisible(false);
+
+            ajustarStockButton.setVisible(false);
+            ajustarStockButton.setManaged(false);
+        }
 
 
         //Mostramos el boton de papelera en la TableView
@@ -142,12 +163,13 @@ public class ProductosController {
     }
 
     private void mostrarDetallesProducto(Producto producto) {
-        if (producto != null) {
+        if (producto != null){
             nombreProductoLabel.setText(producto.getNombre());
             skuLabel.setText(producto.getSku());
             stockLabel.setText(String.valueOf(producto.getStock()));
             descripcionTextArea.setText(producto.getDescripcion());
             marcaLabel.setText(producto.getNombreMarca() != null ? producto.getNombreMarca() : "Marca Genérica");
+            categoriaLabel.setText(producto.getNombreCategoria() != null ? producto.getNombreCategoria() : "Sin Categoría");
 
             if (producto.getImagenPath() != null && !producto.getImagenPath().isEmpty()) {
                 try {
@@ -166,6 +188,7 @@ public class ProductosController {
             skuLabel.setText("-");
             stockLabel.setText("-");
             marcaLabel.setText("-");
+            categoriaLabel.setText("-");
             descripcionTextArea.setText("");
             productoImageView.setImage(null);
         }
@@ -181,28 +204,27 @@ public class ProductosController {
     //Agregamos funcion a nuestro Agregar productos
     @FXML
     private void handleAgregarProducto() {
+        abrirDialogoProducto(null);
+    }
+    private void abrirDialogoProducto(Producto producto) {
         try {
-            URL url = getClass().getResource("/com/menu/uimarketsolo/view/FormularioAggProducto.fxml");
-
-            if (url == null) {
-                System.err.println("Error Crítico: No se pudo encontrar el archivo FXML.");
-                return;
-            }
-
-
-            FXMLLoader loader = new FXMLLoader(url);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/menu/uimarketsolo/view/FormularioProductoView.fxml"));
             Parent root = loader.load();
+
+            // Obtenemos el controlador del formulario para pasarle los datos
+            FormularioProductoController controller = loader.getController();
+            controller.initData(producto);
+
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Agregar Nuevo Producto");
-            dialogStage.setResizable(false);
+            dialogStage.setTitle(producto == null ? "Agregar Producto" : "Editar Producto");
             dialogStage.initModality(Modality.APPLICATION_MODAL);
-            dialogStage.initOwner(agregarProductoButton.getScene().getWindow());
             dialogStage.setScene(new Scene(root));
             dialogStage.showAndWait();
+
+            // Refrescamos la tabla después de cerrar
             cargarProductos();
 
         } catch (IOException e) {
-            System.err.println("Error al cargar la ventana del formulario:");
             e.printStackTrace();
         }
     }
@@ -210,30 +232,9 @@ public class ProductosController {
     //Logica para mostrar el producto seleccionado dentro de nuestro Formulario para editar producto
     @FXML
     private void handleEditarProducto() {
-        System.out.println("Botón 'Editar Producto' presionado.");
+
         Producto productoSeleccionado = productosTable.getSelectionModel().getSelectedItem();
-        if (productoSeleccionado == null) {
-            return;
-        }
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/menu/uimarketsolo/view/FormEditProducto.fxml"));
-            Parent root = loader.load();
-
-            FormEditProductoController formEditProductoController = loader.getController();
-            formEditProductoController.initData(productoSeleccionado);
-
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle("Editar Producto");
-            dialogStage.initModality(Modality.APPLICATION_MODAL);
-            dialogStage.setScene(new Scene(root));
-            dialogStage.showAndWait();
-            cargarProductos();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        abrirDialogoProducto(productoSeleccionado);
     }
 
     //Le da accion al boton de gestionar marcas, abriendo la ventana.
@@ -265,21 +266,34 @@ public class ProductosController {
 
 
 
-    @FXML
     private void handleEliminarProducto(Producto productoSeleccionado) {
-        if (productoSeleccionado == null) return;
+        if (productoSeleccionado == null) {
+            mostrarAlerta("Error", "No se ha seleccionado ningún producto para eliminar.");
+            return;
+        }
 
+        // Creamos una alerta de confirmación
         Alert alertaConfirmacion = new Alert(Alert.AlertType.CONFIRMATION);
         alertaConfirmacion.setTitle("Confirmar Eliminación");
         alertaConfirmacion.setHeaderText("¿Estás seguro de que querés eliminar este producto?");
         alertaConfirmacion.setContentText(productoSeleccionado.getNombre() + " (SKU: " + productoSeleccionado.getSku() + ")");
 
-        alertaConfirmacion.showAndWait().ifPresent(respuesta -> {
-            if (respuesta == ButtonType.OK) {
+        // Mostramos la alerta y esperamos la respuesta del usuario
+        Optional<ButtonType> resultado = alertaConfirmacion.showAndWait();
+        if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
+            try {
+                // Si el usuario presiona "OK", llamamos al DAO para borrar
                 productoDAO.eliminarProducto(productoSeleccionado.getId());
+
+                // Refrescamos la tabla para que el cambio se vea al instante
                 cargarProductos();
+
+            } catch (Exception e) {
+                // Si el DAO falla (por ejemplo, por un problema de base de datos), le mostramos un error al usuario
+                mostrarAlerta("Error de Base de Datos", "No se pudo eliminar el producto. Revise la conexión.");
+                e.printStackTrace();
             }
-        });
+        }
     }
 
 
@@ -324,5 +338,12 @@ public class ProductosController {
         }
     }
 
+    private void mostrarAlerta(String titulo, String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
 
 }
