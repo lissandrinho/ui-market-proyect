@@ -98,3 +98,39 @@
     -fx-background-color: transparent;
 }
 
+/* --- Estilo para ComboBox --- */
+.combo-box {
+    -fx-background-color: white;
+    -fx-border-color: #DDDDDD;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-font-size: 14px;
+}
+
+/* Estilo para el botón de la flecha */
+.combo-box .arrow-button {
+    -fx-background-color: #F0F0F0;
+    -fx-background-radius: 0 5px 5px 0;
+}
+.combo-box .arrow {
+    -fx-background-color: #4e8767; /* Tu color verde */
+}
+
+/* --- Estilo para DatePicker --- */
+.date-picker {
+    -fx-background-color: white;
+    -fx-border-color: #DDDDDD;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-font-size: 14px;
+}
+
+/* Estilo para el botón del calendario */
+.date-picker .arrow-button {
+    -fx-background-color: #F0F0F0;
+    -fx-background-radius: 0 5px 5px 0;
+}
+.date-picker .arrow-button .arrow {
+    -fx-background-color: #4e8767; /* Tu color verde */
+}
+

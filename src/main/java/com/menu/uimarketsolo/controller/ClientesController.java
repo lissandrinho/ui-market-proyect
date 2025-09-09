@@ -65,7 +65,7 @@ public class ClientesController {
         this.clienteDAO = new ClienteDAO();
 
         Usuario usuarioLogueado = SessionManager.getInstance().getUsuarioLogueado();
-        if (usuarioLogueado != null && !usuarioLogueado.getRol().equalsIgnoreCase("admin")){
+        if (usuarioLogueado != null && !usuarioLogueado.getRol().equalsIgnoreCase("Administrador")){
             hboxBotonesAdmin.setVisible(false);
             hboxBotonesAdmin.setManaged(false);
 

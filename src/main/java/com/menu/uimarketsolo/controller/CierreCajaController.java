@@ -54,7 +54,7 @@ public class CierreCajaController {
     }
 
     private void configurarVistaPorRol() {
-        boolean esAdmin = usuarioLogueado.getRol().equalsIgnoreCase("admin");
+        boolean esAdmin = usuarioLogueado.getRol().equalsIgnoreCase("Administrador");
 
         vboxFecha.setVisible(esAdmin);
         vboxFecha.setManaged(esAdmin);

@@ -72,7 +72,7 @@ public class ProveedorController {
         this.marcaDAO = new MarcaDAO();
         this.proveedorMarcaDAO = new ProveedorMarcaDAO();
         Usuario usuarioLogueado = SessionManager.getInstance().getUsuarioLogueado();
-        if (usuarioLogueado != null && !usuarioLogueado.getRol().equalsIgnoreCase("admin")){
+        if (usuarioLogueado != null && !usuarioLogueado.getRol().equalsIgnoreCase("Administrador")){
             hboxBotonesAdmin.setVisible(false);
             hboxBotonesAdmin.setManaged(false);
             accionesColumn.setVisible(false);

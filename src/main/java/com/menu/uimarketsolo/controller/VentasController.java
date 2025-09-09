@@ -27,6 +27,7 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -47,7 +48,7 @@ public class VentasController {
     @FXML
     private Spinner<Integer> spinnerCantidad;
     @FXML
-    private Button buttonAgregarProducto;
+    private DatePicker fechaVentaPicker;
 
 
 
@@ -80,8 +81,7 @@ public class VentasController {
     private Label labelIva;
     @FXML
     private Label labelNumeroFactura;
-    @FXML
-    private Label labelFecha;
+
     @FXML
     private Label labelSubtotal;
 
@@ -114,6 +114,7 @@ public class VentasController {
             mostrarAlerta("Error Crítico", "No se pudo encontrar al cliente por defecto (Consumidor Final).");
         }
         fieldBuscarCliente.setText(this.clienteSeleccionado != null ? this.clienteSeleccionado.toString() : "");
+        fechaVentaPicker.setValue(LocalDate.now());
 
         //Numero de factura
         int ultimoId = ventaDAO.getUltimoIdVenta();
@@ -134,8 +135,6 @@ public class VentasController {
         comboBoxMetodoPago.setValue("Efectivo");
         comboBoxMetodoPago.valueProperty().addListener((o, oldVal, newVal) -> actualizarTotales());
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        labelFecha.setText(LocalDateTime.now().format(formatter));
 
         SpinnerValueFactory<Integer> valueFactory =
                 new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 1);
@@ -358,7 +357,8 @@ public class VentasController {
         nuevaVenta.setUsuarioId(SessionManager.getInstance().getUsuarioLogueado().getId());
         nuevaVenta.setClienteCedula(clienteSeleccionado.getCedula());
         nuevaVenta.setVentaTotal(BigDecimal.valueOf(totalFinal));
-        nuevaVenta.setFechaVenta(LocalDateTime.now());
+        LocalDate fechaSeleccionada = fechaVentaPicker.getValue();
+        nuevaVenta.setFechaVenta(fechaSeleccionada.atStartOfDay());
 
         nuevaVenta.setUsuarioId(SessionManager.getInstance().getUsuarioLogueado().getId());
 
