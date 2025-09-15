@@ -31,7 +31,6 @@ public class UsuarioDAO {
         return usuarios;
     }
 
-    // Dentro de la clase UsuarioDAO.java
 
     public Usuario verificarCredenciales(String nombreUsuario, String contrasenaIngresada) {
         String sql = "SELECT * FROM usuarios WHERE nombre_usuario = ? AND is_activo = true";
@@ -93,7 +92,9 @@ public class UsuarioDAO {
             pstmt.setString(3, usuario.getRol());
             int paramIndex = 4;
             if(usuario.getContrasena() != null && !usuario.getContrasena().isEmpty()){
-                pstmt.setString(paramIndex++, usuario.getContrasena()); // Recordatorio: Encriptar en un futuro
+                // Se encripta la nueva contraseña antes de guardarla
+                String hashedPassword = PasswordUtil.hashPassword(usuario.getContrasena());
+                pstmt.setString(paramIndex++, hashedPassword);
             }
             pstmt.setInt(paramIndex, usuario.getId());
             pstmt.executeUpdate();

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="736.0" prefWidth="548.0" spacing="20.0" style="-fx-background-color: #282c2d;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.UsuariosController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="641.0" prefWidth="548.0" spacing="20.0" style="-fx-background-color: #282c2d;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.UsuariosController">
    <padding>
       <Insets bottom="15.0" left="20.0" right="20.0" top="20.0" />
    </padding>
@@ -59,7 +59,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <VBox fx:id="panelDetallesUsuario" prefHeight="186.0" prefWidth="508.0">
+      <VBox fx:id="panelDetallesUsuario" prefHeight="156.0" prefWidth="508.0">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                <children>
@@ -82,14 +82,14 @@
                         <Font name="SansSerif Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="nombreCompletoLabel" prefHeight="21.0" prefWidth="0.0" textFill="WHITE">
+                  <Label fx:id="nombreCompletoLabel" prefHeight="21.0" prefWidth="300.0" textFill="WHITE">
                      <font>
                         <Font name="SansSerif Regular" size="18.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="508.0" spacing="5.0">
                <children>
                   <Label text="Rol del Usuario:" textFill="WHITE">
                      <font>
