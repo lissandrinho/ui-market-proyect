@@ -12,7 +12,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="476.0" prefWidth="823.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.CierreCajaController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="489.0" prefWidth="839.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.CierreCajaController">
    <children>
       <VBox prefHeight="74.0" prefWidth="560.0">
          <children>
@@ -254,9 +254,9 @@
             <Insets left="20.0" top="10.0" />
          </padding>
       </HBox>
-      <HBox alignment="CENTER_RIGHT" prefHeight="69.0" prefWidth="823.0" spacing="20.0">
+      <HBox alignment="CENTER_RIGHT" prefHeight="91.0" prefWidth="836.0" spacing="20.0">
          <children>
-            <Button fx:id="btnConfirmarCierre" mnemonicParsing="false" onAction="#handleConfirmarCierre" prefHeight="40.0" prefWidth="205.0" style="-fx-background-color: #4e8767;" text="CONFIRMAR CIERRE" textFill="WHITE">
+            <Button fx:id="btnConfirmarCierre" mnemonicParsing="false" onAction="#handleConfirmarCierre" prefHeight="49.0" prefWidth="205.0" style="-fx-background-color: #4e8767;" text="CONFIRMAR CIERRE" textFill="WHITE">
                <font>
                   <Font name="SansSerif Bold" size="16.0" />
                </font>

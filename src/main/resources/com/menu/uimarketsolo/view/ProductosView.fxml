@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.ProductosController">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.ProductosController">
    <children>
       <VBox prefHeight="87.0">
          <children>
@@ -173,7 +173,7 @@
                         </Label>
                         <Label fx:id="nombreProductoLabel" textFill="WHITE">
                            <font>
-                              <Font name="SansSerif Regular" size="16.0" />
+                              <Font name="SansSerif Regular" size="14.0" />
                            </font>
                         </Label>
                      </children>

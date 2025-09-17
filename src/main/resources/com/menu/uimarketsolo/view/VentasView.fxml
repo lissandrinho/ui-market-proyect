@@ -20,7 +20,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.VentasController">
+<VBox alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.VentasController">
    <children>
       <VBox prefHeight="87.0">
          <children>
@@ -366,7 +366,7 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Button>
-            <Region prefHeight="52.0" prefWidth="389.0" />
+            <Region prefHeight="52.0" prefWidth="367.0" />
             <HBox alignment="CENTER" prefHeight="52.0" prefWidth="210.0">
                <children>
                   <Label text="Total:" HBox.hgrow="ALWAYS">

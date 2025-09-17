@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #282c2d;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.FormularioClienteController">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="438.0" prefWidth="609.0" style="-fx-background-color: #282c2d;" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.FormularioClienteController">
    <padding>
       <Insets left="20.0" right="20.0" />
    </padding>

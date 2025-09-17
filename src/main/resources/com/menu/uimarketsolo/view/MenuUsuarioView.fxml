@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="641.0" prefWidth="548.0" spacing="20.0" style="-fx-background-color: #282c2d;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.UsuariosController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="641.0" prefWidth="548.0" spacing="20.0" style="-fx-background-color: #282c2d;" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.UsuariosController">
    <padding>
       <Insets bottom="15.0" left="20.0" right="20.0" top="20.0" />
    </padding>
@@ -49,7 +49,7 @@
             </Button>
          </children>
       </HBox>
-      <TableView fx:id="tableViewUsuarios" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../css/styles.css">
+      <TableView fx:id="tableViewUsuarios" prefHeight="221.0" prefWidth="508.0" stylesheets="@../../../../css/styles.css">
         <columns>
           <TableColumn fx:id="usuariosColumn" prefWidth="75.0" text="Usuario" />
           <TableColumn fx:id="nombreCompletoColumn" prefWidth="75.0" text="Nombre Completo" />

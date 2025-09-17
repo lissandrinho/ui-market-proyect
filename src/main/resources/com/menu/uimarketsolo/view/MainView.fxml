@@ -12,11 +12,11 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="mainPane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.MainController">
+<BorderPane fx:id="mainPane" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.MainController">
    <left>
       <VBox alignment="CENTER" spacing="15.0" style="-fx-background-color: #282c2d;" BorderPane.alignment="TOP_CENTER">
          <children>
-            <ImageView fitHeight="185.0" fitWidth="233.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+            <ImageView fitHeight="180.0" fitWidth="177.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
                <image>
                   <Image url="@../../../../icons/logoUI.png" />
                </image>

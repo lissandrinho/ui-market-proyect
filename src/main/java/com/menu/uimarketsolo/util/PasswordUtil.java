@@ -1,11 +1,11 @@
 package com.menu.uimarketsolo.util;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+// 1. Se cambia el import de Spring por el de jBCrypt
+import org.mindrot.jbcrypt.BCrypt;
 
 public class PasswordUtil {
 
-    // Usamos una única instancia para ser más eficientes.
-    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    // Ya no se necesita una instancia de 'encoder', jBCrypt usa métodos estáticos.
 
     /**
      * Genera un hash seguro de una contraseña en texto plano.
@@ -16,7 +16,9 @@ public class PasswordUtil {
         if (plainTextPassword == null || plainTextPassword.isEmpty()) {
             throw new IllegalArgumentException("La contraseña no puede ser nula o vacía.");
         }
-        return encoder.encode(plainTextPassword);
+        // 2. Se usa el método estático de jBCrypt para hashear.
+        // BCrypt.gensalt() genera el "salt" aleatorio automáticamente.
+        return BCrypt.hashpw(plainTextPassword, BCrypt.gensalt());
     }
 
     /**
@@ -26,9 +28,16 @@ public class PasswordUtil {
      * @return true si las contraseñas coinciden, false en caso contrario.
      */
     public static boolean checkPassword(String plainTextPassword, String hashedPassword) {
-        if (plainTextPassword == null || hashedPassword == null) {
+        if (plainTextPassword == null || hashedPassword == null || hashedPassword.isEmpty()) {
             return false;
         }
-        return encoder.matches(plainTextPassword, hashedPassword);
+        try {
+            // 3. Se usa el método estático de jBCrypt para verificar.
+            // Este método es 100% COMPATIBLE con los hashes que ya creaste con Spring.
+            return BCrypt.checkpw(plainTextPassword, hashedPassword);
+        } catch (IllegalArgumentException e) {
+            // Esto previene un crash si el hash en la BD no tiene el formato correcto.
+            return false;
+        }
     }
 }

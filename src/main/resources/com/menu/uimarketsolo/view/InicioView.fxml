@@ -13,7 +13,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="786.0" prefWidth="1143.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.InicioController">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="786.0" prefWidth="1143.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.InicioController">
    <children>
       <VBox prefHeight="87.0" VBox.vgrow="ALWAYS">
          <children>
@@ -138,7 +138,7 @@
                         <Font name="SansSerif Regular" size="16.0" />
                      </font>
                   </Label>
-                  <BarChart fx:id="barChartVentasSemales" stylesheets="@../../../../css/styles.css">
+                  <BarChart fx:id="barChartVentasSemales" barGap="5.0" stylesheets="@../../../../css/styles.css">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>

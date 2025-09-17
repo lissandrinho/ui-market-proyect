@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="15.0" style="-fx-background-color: #282c2d;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.LoginController">
+<VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="15.0" style="-fx-background-color: #282c2d;" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.LoginController">
    <children>
-      <ImageView fitHeight="109.0" fitWidth="308.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+      <ImageView fitHeight="107.0" fitWidth="341.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
          <image>
             <Image url="@../../../../icons/LogoUI2.png" />
          </image>

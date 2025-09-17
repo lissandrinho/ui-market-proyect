@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.ProveedorController">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.ProveedorController">
    <children>
       <VBox prefHeight="87.0">
          <children>
@@ -112,8 +112,8 @@
                   </Label>
                   <TableView fx:id="proveedorTable" prefHeight="450.0" prefWidth="780.0" stylesheets="@../../../../css/styles.css" VBox.vgrow="ALWAYS">
                      <columns>
-                        <TableColumn fx:id="proveedorNombreColumn" prefWidth="207.0" text="Nombre" />
-                        <TableColumn fx:id="proveedorContactoColumn" prefWidth="153.0" text="Contacto" />
+                        <TableColumn fx:id="proveedorNombreColumn" prefWidth="357.0" text="Nombre" />
+                        <TableColumn fx:id="proveedorContactoColumn" prefWidth="223.0" text="Contacto" />
                         <TableColumn fx:id="accionesColumn" prefWidth="83.0" text="Eliminar" />
                      </columns>
                      <VBox.margin>

@@ -5,21 +5,49 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f3ce426-8dcd-4044-8ee5-0245a0563f5d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/MainLogo.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/menu/uimarketsolo/Launcher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/productos/P081797-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/productos/fabuloso.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependency-reduced-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dependency-reduced-pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jpackage_log.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/menu/uimarketsolo/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/menu/uimarketsolo/MainApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/menu/uimarketsolo/dao/UsuarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/menu/uimarketsolo/dao/UsuarioDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/menu/uimarketsolo/controller/FormularioProductoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/menu/uimarketsolo/controller/FormularioProductoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/menu/uimarketsolo/controller/ProductosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/menu/uimarketsolo/controller/ProductosController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/menu/uimarketsolo/util/PasswordUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/menu/uimarketsolo/util/PasswordUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/AjusteStockView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/AjusteStockView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/CierreCajaView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/CierreCajaView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/ClientesView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/ClientesView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/FormularioCliente.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/FormularioCliente.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/FormularioDetallesFacturaView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/FormularioDetallesFacturaView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/FormularioHistorialCierreCajaView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/FormularioHistorialCierreCajaView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/FormularioProductoView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/FormularioProductoView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/FormularioProveedorView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/FormularioProveedorView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/FormularioUsuarioView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/FormularioUsuarioView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/GestionarMarcaView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/GestionarMarcaView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/InicioView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/InicioView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/LoginView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/LoginView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/MainView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/MenuUsuarioView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/MenuUsuarioView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/ProductosView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/ProductosView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/ProveedorView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/ProveedorView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/ReportesView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/ReportesView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/VentasView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/VentasView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/icons/MainLogo.ico" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/icons/MainLogo.ico" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -57,6 +85,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Launcher.executor": "Run",
     "Application.MainApplication.executor": "Run",
     "Maven.ui-marketSOLO [clean].executor": "Run",
     "Maven.ui-marketSOLO [package].executor": "Run",
@@ -64,10 +93,35 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/lissa/IdeaProjects/ui-marketSOLO/src/main/resources/images/productos",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.25977013",
     "settings.editor.selected.configurable": "preferences.JavaFX"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\lissa\IdeaProjects\ui-marketSOLO\src\main\resources\images\productos" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\lissa\IdeaProjects\ui-marketSOLO\src\main\resources\icons" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.MainApplication">
+    <configuration name="Launcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.menu.uimarketsolo.Launcher" />
+      <module name="ui-marketSOLO" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.menu.uimarketsolo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.menu.uimarketsolo.MainApplication" />
       <module name="ui-marketSOLO" />
@@ -84,6 +138,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.MainApplication" />
+        <item itemvalue="Application.Launcher" />
       </list>
     </recent_temporary>
   </component>
@@ -96,5 +151,16 @@
       <updated>1757869928544</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

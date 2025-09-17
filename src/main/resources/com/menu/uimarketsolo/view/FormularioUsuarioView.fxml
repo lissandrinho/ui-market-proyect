@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="513.0" prefWidth="558.0" style="-fx-background-color: #282c2d;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.FormularioUsuarioController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="557.0" style="-fx-background-color: #282c2d;" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.FormularioUsuarioController">
    <top>
       <VBox alignment="CENTER_LEFT" prefHeight="74.0" prefWidth="560.0" spacing="5.0" BorderPane.alignment="CENTER_LEFT">
          <children>

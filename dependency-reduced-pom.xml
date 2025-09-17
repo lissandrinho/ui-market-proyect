@@ -4,7 +4,7 @@
   <groupId>com.menu</groupId>
   <artifactId>ui-marketSOLO</artifactId>
   <name>ui-marketSOLO</name>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0.0</version>
   <build>
     <plugins>
       <plugin>
@@ -26,7 +26,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>com.menu.uimarketsolo.MainApplication</mainClass>
+                  <mainClass>com.menu.uimarketsolo.Launcher</mainClass>
                 </transformer>
               </transformers>
             </configuration>

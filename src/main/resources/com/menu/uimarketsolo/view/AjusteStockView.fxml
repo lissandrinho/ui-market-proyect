@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="407.0" spacing="10.0" style="-fx-background-color: #282c2d;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.AjusteStockController">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="407.0" spacing="10.0" style="-fx-background-color: #282c2d;" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.AjusteStockController">
    <children>
       <VBox prefHeight="63.0" prefWidth="600.0">
          <children>
@@ -90,7 +90,7 @@
             <Insets left="20.0" />
          </padding>
       </VBox>
-      <HBox alignment="CENTER" prefHeight="111.0" prefWidth="389.0" spacing="20.0">
+      <HBox alignment="CENTER" prefHeight="102.0" prefWidth="407.0" spacing="20.0">
          <children>
             <Button fx:id="cancelarButton" mnemonicParsing="false" onAction="#handleCancelarButton" prefHeight="50.0" prefWidth="139.0" style="-fx-background-color: #525658;" text="Cancelar" textFill="WHITE">
                <font>

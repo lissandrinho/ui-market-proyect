@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="755.0" prefWidth="1141.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.ReportesController">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="755.0" prefWidth="1141.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.menu.uimarketsolo.controller.ReportesController">
    <children>
       <VBox>
          <children>
@@ -141,7 +141,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="historialCierreCajaButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#handlehistorialCierreCajaClick" prefHeight="35.0" prefWidth="267.0" stylesheets="@../../../../css/styles.css" text="Historial Cierre de Caja">
+                  <Button fx:id="historialCierreCajaButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#handlehistorialCierreCajaClick" prefHeight="35.0" prefWidth="267.0" stylesheets="@../../../../css/styles.css" text="Historial de Caja">
                      <font>
                         <Font name="SansSerif Bold" size="16.0" />
                      </font>

@@ -17,9 +17,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -107,10 +106,19 @@ public class FormularioProductoController {
                 }
             }
 
+
             if (producto.getImagenPath() != null && !producto.getImagenPath().isEmpty()){
-                Image image = new Image(getClass().getResourceAsStream("/images/productos/" + producto.getImagenPath()));
-                imagenViewProducto.setImage(image);
+                File archivoImagen = new File(producto.getImagenPath());
+                if (archivoImagen.exists()) {
+                    try {
+                        // Se carga la imagen desde el archivo del sistema de ficheros.
+                        imagenViewProducto.setImage(new Image(new FileInputStream(archivoImagen)));
+                    } catch (IOException e) {
+                        System.err.println("Error al cargar la imagen: " + producto.getImagenPath());
+                    }
+                }
             }
+
         }else {
             formularioProductoLabel.setText("Agregar Nuevo Producto");
         }
@@ -183,19 +191,17 @@ public class FormularioProductoController {
         if (archivoImagenSeleccionada != null) {
             try {
 
-                URL resourceUrl = getClass().getResource("/images");
-                if (resourceUrl == null) {
-                    throw new IOException("La carpeta de recursos '/images' no fue encontrada.");
-                }
-                Path destino = Paths.get(resourceUrl.toURI()).resolve("productos");
+                Path directorioImagenes = Paths.get(System.getProperty("user.home"), "MarketSOLO_Images", "productos");
 
-                if (!Files.exists(destino)) {
-                    Files.createDirectories(destino);
+                if (!Files.exists(directorioImagenes)) {
+                    Files.createDirectories(directorioImagenes);
                 }
-                Path archivoDestino = destino.resolve(archivoImagenSeleccionada.getName());
+                
+
+                Path archivoDestino = directorioImagenes.resolve(archivoImagenSeleccionada.getName());
                 Files.copy(archivoImagenSeleccionada.toPath(), archivoDestino, StandardCopyOption.REPLACE_EXISTING);
-                nombreImagen = archivoImagenSeleccionada.getName();
-            } catch (IOException | URISyntaxException e) {
+                nombreImagen = archivoDestino.toAbsolutePath().toString();
+            } catch (IOException e) {
                 e.printStackTrace();
                 mostrarAlerta("Error", "No se pudo guardar la imagen del producto.");
             }

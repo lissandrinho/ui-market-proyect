@@ -1,5 +1,4 @@
 module com.menu.uimarketsolo {
-
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
@@ -17,9 +16,8 @@ module com.menu.uimarketsolo {
     requires eu.hansolo.fx.heatmap;
     requires eu.hansolo.fx.countries;
     requires java.sql;
-    requires spring.security.crypto;
-    requires org.apache.commons.logging;
-
+    requires jbcrypt;
+   // requires com.mysql.cj;
 
 
     opens com.menu.uimarketsolo to javafx.fxml;

@@ -20,6 +20,8 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileInputStream;
 import javafx.util.Callback;
 import java.io.IOException;
 import java.net.URL;
@@ -171,17 +173,24 @@ public class ProductosController {
             marcaLabel.setText(producto.getNombreMarca() != null ? producto.getNombreMarca() : "Marca Genérica");
             categoriaLabel.setText(producto.getNombreCategoria() != null ? producto.getNombreCategoria() : "Sin Categoría");
 
+            // --- INICIO DE LA CORRECCIÓN ---
+            // Se carga la imagen desde la ruta absoluta del sistema de ficheros.
             if (producto.getImagenPath() != null && !producto.getImagenPath().isEmpty()) {
-                try {
-                    String rutaImagen = "/images/productos/" + producto.getImagenPath();
-                    Image image = new Image(getClass().getResourceAsStream(rutaImagen));
-                    productoImageView.setImage(image.isError() ? null : image);
-                } catch (Exception e) {
+                File archivoImagen = new File(producto.getImagenPath());
+                if (archivoImagen.exists()) {
+                    try {
+                        productoImageView.setImage(new Image(new FileInputStream(archivoImagen)));
+                    } catch (IOException e) {
+                        System.err.println("Error al cargar la imagen: " + producto.getImagenPath());
+                        productoImageView.setImage(null);
+                    }
+                } else {
                     productoImageView.setImage(null);
                 }
             } else {
                 productoImageView.setImage(null);
             }
+            // --- FIN DE LA CORRECCIÓN ---
         } else {
 
             nombreProductoLabel.setText("-");
