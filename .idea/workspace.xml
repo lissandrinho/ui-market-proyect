@@ -5,37 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f3ce426-8dcd-4044-8ee5-0245a0563f5d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/menu/uimarketsolo/Launcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/productos/P081797-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/productos/fabuloso.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/version.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dependency-reduced-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dependency-reduced-pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jpackage_log.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/menu/uimarketsolo/controller/FormularioProductoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/menu/uimarketsolo/controller/FormularioProductoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/menu/uimarketsolo/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/menu/uimarketsolo/controller/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/menu/uimarketsolo/controller/ProductosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/menu/uimarketsolo/controller/ProductosController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/menu/uimarketsolo/util/PasswordUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/menu/uimarketsolo/util/PasswordUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/menu/uimarketsolo/controller/VentasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/menu/uimarketsolo/controller/VentasController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/AjusteStockView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/AjusteStockView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/CierreCajaView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/CierreCajaView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/ClientesView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/ClientesView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/FormularioCliente.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/FormularioCliente.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/FormularioDetallesFacturaView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/FormularioDetallesFacturaView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/FormularioHistorialCierreCajaView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/FormularioHistorialCierreCajaView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/FormularioProductoView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/FormularioProductoView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/FormularioProveedorView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/FormularioProveedorView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/FormularioUsuarioView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/FormularioUsuarioView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/GestionarMarcaView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/GestionarMarcaView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/InicioView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/InicioView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/LoginView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/LoginView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/MainView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/MenuUsuarioView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/MenuUsuarioView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/ProductosView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/ProductosView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/ProveedorView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/ProveedorView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/ReportesView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/ReportesView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/VentasView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/menu/uimarketsolo/view/VentasView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/icons/MainLogo.ico" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/icons/MainLogo.ico" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,23 +60,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Launcher.executor": "Run",
-    "Application.MainApplication.executor": "Run",
-    "Maven.ui-marketSOLO [clean].executor": "Run",
-    "Maven.ui-marketSOLO [package].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/lissa/IdeaProjects/ui-marketSOLO/src/main/resources/images/productos",
-    "project.structure.last.edited": "SDKs",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.25977013",
-    "settings.editor.selected.configurable": "preferences.JavaFX"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Launcher.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MainApplication.executor&quot;: &quot;Run&quot;,
+    &quot;JAR Application.ui-marketSOLO-1.0.2.jar.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ui-marketSOLO [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ui-marketSOLO [org.openjfx:javafx-maven-plugin:0.0.8:jlink].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ui-marketSOLO [org.openjfx:javafx-maven-plugin:0.0.8:run].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ui-marketSOLO [package].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/lissa/IdeaProjects/ui-marketSOLO/src/main/resources/images/productos&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.25977013&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\lissa\IdeaProjects\ui-marketSOLO\src\main\resources\images\productos" />
@@ -112,6 +92,7 @@
     <configuration name="Launcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.menu.uimarketsolo.Launcher" />
       <module name="ui-marketSOLO" />
+      <option name="VM_PARAMETERS" value="--add-opens=javafx.base/com.sun.javafx.event=org.controlsfx.controls" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.menu.uimarketsolo.*" />
@@ -125,6 +106,7 @@
     <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.menu.uimarketsolo.MainApplication" />
       <module name="ui-marketSOLO" />
+      <option name="VM_PARAMETERS" value="--add-opens=javafx.base/com.sun.javafx.event=org.controlsfx.controls" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.menu.uimarketsolo.*" />
@@ -135,9 +117,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ui-marketSOLO-1.0.2.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/target/ui-marketSOLO-1.0.2.jar" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.Launcher" />
+      <item itemvalue="Application.MainApplication" />
+      <item itemvalue="JAR Application.ui-marketSOLO-1.0.2.jar" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.MainApplication" />
+        <item itemvalue="JAR Application.ui-marketSOLO-1.0.2.jar" />
         <item itemvalue="Application.Launcher" />
       </list>
     </recent_temporary>

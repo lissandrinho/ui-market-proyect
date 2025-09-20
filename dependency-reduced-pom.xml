@@ -4,7 +4,7 @@
   <groupId>com.menu</groupId>
   <artifactId>ui-marketSOLO</artifactId>
   <name>ui-marketSOLO</name>
-  <version>1.0.0</version>
+  <version>1.0.2</version>
   <build>
     <plugins>
       <plugin>

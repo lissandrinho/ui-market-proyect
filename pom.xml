@@ -6,7 +6,7 @@
 
     <groupId>com.menu</groupId>
     <artifactId>ui-marketSOLO</artifactId>
-    <version>1.0.0</version> <name>ui-marketSOLO</name>
+    <version>1.0.2</version> <name>ui-marketSOLO</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

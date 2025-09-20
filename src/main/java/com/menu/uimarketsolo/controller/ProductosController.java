@@ -190,7 +190,7 @@ public class ProductosController {
             } else {
                 productoImageView.setImage(null);
             }
-            // --- FIN DE LA CORRECCIÓN ---
+
         } else {
 
             nombreProductoLabel.setText("-");

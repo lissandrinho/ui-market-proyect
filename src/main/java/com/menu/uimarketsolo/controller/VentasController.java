@@ -25,6 +25,8 @@ import org.controlsfx.control.textfield.TextFields;
 
 import javafx.util.Callback;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -185,20 +187,23 @@ public class VentasController {
         }).setOnAutoCompleted(event -> {
 
 
-                    productoSeleccionadoParaVenta = event.getCompletion();
+            productoSeleccionadoParaVenta = event.getCompletion();
+            String rutaImagen = productoSeleccionadoParaVenta.getImagenPath();
 
-                    if (productoSeleccionadoParaVenta.getImagenPath() != null) {
-                        try {
-                            String rutaImagen = "/images/productos/" + productoSeleccionadoParaVenta.getImagenPath();
-                            Image image = new Image(getClass().getResourceAsStream(rutaImagen));
-                            imageViewProductoPreview.setImage(image.isError() ? null : image);
-                        } catch (Exception e) {
-                            imageViewProductoPreview.setImage(null);
-                        }
-                    } else {
-                        imageViewProductoPreview.setImage(null);
-                    }
-                });
+            if (rutaImagen != null && !rutaImagen.isEmpty()) {
+                java.io.File archivoImagen = new java.io.File(rutaImagen);
+                if (archivoImagen.exists()) {
+
+                    javafx.scene.image.Image imagen = new javafx.scene.image.Image(archivoImagen.toURI().toString());
+                    imageViewProductoPreview.setImage(imagen);
+                } else {
+                    System.err.println("Error: No se encontró la imagen en la ruta: " + rutaImagen);
+                    imageViewProductoPreview.setImage(null); // Limpia la imagen si el archivo no existe
+                }
+            } else {
+                imageViewProductoPreview.setImage(null); // Limpia la imagen si no hay ruta
+            }
+        });
     }
 
     private void configurarColumnaAcciones() {

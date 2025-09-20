@@ -17,7 +17,9 @@ module com.menu.uimarketsolo {
     requires eu.hansolo.fx.countries;
     requires java.sql;
     requires jbcrypt;
-   // requires com.mysql.cj;
+    requires java.net.http;
+    requires java.desktop;
+    //requires com.mysql.cj;
 
 
     opens com.menu.uimarketsolo to javafx.fxml;
